@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.smarttrip.dao.UserMapper;
 import com.smarttrip.domain.User;
 import com.smarttrip.service.IUserService;
+import com.smarttrip.util.MD5Utils;
+import com.smarttrip.util.UUIDUtils;
 
 /**
  * IUserService的实现类. <br/>
@@ -99,5 +101,38 @@ public class UserService implements IUserService {
 		
 		
 		return userMapper.selectByPage(rb1);
+	}
+	
+	/**
+	 * 按照手机号查询用户及其密码
+	 * @see com.smarttrip.service.IUserService#selectByMobile()
+	 * */
+	@Override
+	public User selectByMobile(String mobile){
+		if(mobile == null  ||  mobile.equals("")){
+			logger.debug("手机号不能为空");
+			return null;
+		}
+		return userMapper.selectByMobile(mobile);
+	}
+
+	/**
+	 * 检查用户密码是否正确
+	 * */
+	@Override
+	public boolean checkPwd(User user,String pwd) {
+		if (user == null){
+			logger.debug("用户不存在");
+			return false;
+		}
+		if (pwd == null || pwd==""){
+			logger.debug("密码为空");
+		}
+
+		String salt = user.getSalt();
+		String password = MD5Utils.encrypt(pwd + salt);
+		
+		if (user.getPassword().equals(password))return true;
+		else return false;
 	}
 }

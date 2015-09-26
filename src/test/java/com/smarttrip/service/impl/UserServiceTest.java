@@ -17,6 +17,7 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -111,6 +112,7 @@ public class UserServiceTest {
 		assertEquals(user, null);
 	}
 
+	@Ignore
 	@Test(expected = NullPointerException.class)
 	public void testInsert_null(){
 		User user = null;

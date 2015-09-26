@@ -17,4 +17,7 @@ public interface UserMapper {
     List<User> selectByPage(RowBounds rb);
 
     int updateByPrimaryKey(User record);
+    
+    User selectByMobile(String mobile);
+    
 }

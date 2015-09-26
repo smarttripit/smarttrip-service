@@ -51,4 +51,10 @@
     status
     from user
   </select>
+  <select id="selectByMobile" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select id, name, password, salt, realName, nickName, email, mobileNo, registerTime, 
+    status
+    from user
+    where mobileNo = #{mobile,jdbcType=VARCHAR}
+  </select>
 </mapper>
