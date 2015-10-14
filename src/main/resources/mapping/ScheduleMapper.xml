@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smarttrip.dao.ScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.smarttrip.domain.Schedule" >
+    <id column="scheduleId" property="scheduleId" jdbcType="CHAR" />
+    <result column="routeId" property="routeId" jdbcType="CHAR" />
+    <result column="order" property="order" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="thumbnail" property="thumbnail" jdbcType="CHAR" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="direction" property="direction" jdbcType="CHAR" />
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from schedule
+    where scheduleId = #{scheduleId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.smarttrip.domain.Schedule" >
+    insert into schedule (scheduleId, routeId, order, 
+      type, name, summary, thumbnail, 
+      link, direction, description
+      )
+    values (#{scheduleId,jdbcType=CHAR}, #{routeId,jdbcType=CHAR}, #{order,jdbcType=INTEGER}, 
+      #{type,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{thumbnail,jdbcType=CHAR}, 
+      #{link,jdbcType=VARCHAR}, #{direction,jdbcType=CHAR}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.smarttrip.domain.Schedule" >
+    update schedule
+    set routeId = #{routeId,jdbcType=CHAR},
+      order = #{order,jdbcType=INTEGER},
+      type = #{type,jdbcType=CHAR},
+      name = #{name,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      thumbnail = #{thumbnail,jdbcType=CHAR},
+      link = #{link,jdbcType=VARCHAR},
+      direction = #{direction,jdbcType=CHAR},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where scheduleId = #{scheduleId,jdbcType=CHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select scheduleId, routeId, order, type, name, summary, thumbnail, link, direction, 
+    description
+    from schedule
+    where scheduleId = #{scheduleId,jdbcType=CHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select scheduleId, routeId, order, type, name, summary, thumbnail, link, direction, 
+    description
+    from schedule
+  </select>
+</mapper>

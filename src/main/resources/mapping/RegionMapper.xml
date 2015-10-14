@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smarttrip.dao.RegionMapper" >
+  <resultMap id="BaseResultMap" type="com.smarttrip.domain.Region" >
+    <id column="regionId" property="regionId" jdbcType="CHAR" />
+    <result column="firstRegion" property="firstRegion" jdbcType="VARCHAR" />
+    <result column="secondRegion" property="secondRegion" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from region
+    where regionId = #{regionId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.smarttrip.domain.Region" >
+    insert into region (regionId, firstRegion, secondRegion
+      )
+    values (#{regionId,jdbcType=CHAR}, #{firstRegion,jdbcType=VARCHAR}, #{secondRegion,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.smarttrip.domain.Region" >
+    update region
+    set firstRegion = #{firstRegion,jdbcType=VARCHAR},
+      secondRegion = #{secondRegion,jdbcType=VARCHAR}
+    where regionId = #{regionId,jdbcType=CHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select regionId, firstRegion, secondRegion
+    from region
+    where regionId = #{regionId,jdbcType=CHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select regionId, firstRegion, secondRegion
+    from region
+  </select>
+</mapper>

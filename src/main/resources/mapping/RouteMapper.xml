@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smarttrip.dao.RouteMapper" >
+  <resultMap id="BaseResultMap" type="com.smarttrip.domain.Route" >
+    <id column="routeId" property="routeId" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="feature" property="feature" jdbcType="VARCHAR" />
+    <result column="period" property="period" jdbcType="SMALLINT" />
+    <result column="map" property="map" jdbcType="CHAR" />
+    <result column="briefRecommendation" property="briefRecommendation" jdbcType="VARCHAR" />
+    <result column="commentCount" property="commentCount" jdbcType="INTEGER" />
+    <result column="commetRatio" property="commetRatio" jdbcType="REAL" />
+    <result column="purchaseCount" property="purchaseCount" jdbcType="INTEGER" />
+    <result column="regionId" property="regionId" jdbcType="CHAR" />
+    <result column="detail" property="detail" jdbcType="LONGVARCHAR" />
+    <result column="feeDescription" property="feeDescription" jdbcType="LONGVARCHAR" />
+    <result column="bookingNotice" property="bookingNotice" jdbcType="LONGVARCHAR" />
+    <result column="detailRecommondation" property="detailRecommondation" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from route
+    where routeId = #{routeId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.smarttrip.domain.Route" >
+    insert into route (routeId, name, feature, 
+      period, map, briefRecommendation, 
+      commentCount, commetRatio, purchaseCount, 
+      regionId, detail, feeDescription, 
+      bookingNotice, detailRecommondation
+      )
+    values (#{routeId,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{feature,jdbcType=VARCHAR}, 
+      #{period,jdbcType=SMALLINT}, #{map,jdbcType=CHAR}, #{briefRecommendation,jdbcType=VARCHAR}, 
+      #{commentCount,jdbcType=INTEGER}, #{commetRatio,jdbcType=REAL}, #{purchaseCount,jdbcType=INTEGER}, 
+      #{regionId,jdbcType=CHAR}, #{detail,jdbcType=LONGVARCHAR}, #{feeDescription,jdbcType=LONGVARCHAR}, 
+      #{bookingNotice,jdbcType=LONGVARCHAR}, #{detailRecommondation,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.smarttrip.domain.Route" >
+    update route
+    set name = #{name,jdbcType=VARCHAR},
+      feature = #{feature,jdbcType=VARCHAR},
+      period = #{period,jdbcType=SMALLINT},
+      map = #{map,jdbcType=CHAR},
+      briefRecommendation = #{briefRecommendation,jdbcType=VARCHAR},
+      commentCount = #{commentCount,jdbcType=INTEGER},
+      commetRatio = #{commetRatio,jdbcType=REAL},
+      purchaseCount = #{purchaseCount,jdbcType=INTEGER},
+      regionId = #{regionId,jdbcType=CHAR},
+      detail = #{detail,jdbcType=LONGVARCHAR},
+      feeDescription = #{feeDescription,jdbcType=LONGVARCHAR},
+      bookingNotice = #{bookingNotice,jdbcType=LONGVARCHAR},
+      detailRecommondation = #{detailRecommondation,jdbcType=LONGVARCHAR}
+    where routeId = #{routeId,jdbcType=CHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
+    purchaseCount, regionId, detail, feeDescription, bookingNotice, detailRecommondation
+    from route
+    where routeId = #{routeId,jdbcType=CHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
+    purchaseCount, regionId, detail, feeDescription, bookingNotice, detailRecommondation
+    from route
+  </select>
+</mapper>

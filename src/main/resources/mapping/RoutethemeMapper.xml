@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smarttrip.dao.RoutethemeMapper" >
+  <resultMap id="BaseResultMap" type="com.smarttrip.domain.Routetheme" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="routeId" property="routeId" jdbcType="CHAR" />
+    <result column="themeId" property="themeId" jdbcType="CHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from routetheme
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.smarttrip.domain.Routetheme" >
+    insert into routetheme (id, routeId, themeId)
+    values (#{id,jdbcType=CHAR}, #{routeId,jdbcType=CHAR}, #{themeId,jdbcType=CHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.smarttrip.domain.Routetheme" >
+    update routetheme
+    set routeId = #{routeId,jdbcType=CHAR},
+      themeId = #{themeId,jdbcType=CHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select id, routeId, themeId
+    from routetheme
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, routeId, themeId
+    from routetheme
+  </select>
+</mapper>
