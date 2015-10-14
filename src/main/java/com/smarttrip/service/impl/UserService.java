@@ -89,32 +89,6 @@ public class UserService implements IUserService {
 		return count;
 	}
 
-	/**
-	 * 分页查询.
-	 * @see com.smarttrip.service.IUserService#selectByPage()
-	 */
-	@Override
-	public List<User> selectByPage(RowBounds rb1) {
-		RowBounds rb = new RowBounds(10, 5);
-		List<User> list = userMapper.selectByPage(rb);
-		
-		
-		
-		return userMapper.selectByPage(rb1);
-	}
-	
-	/**
-	 * 按照手机号查询用户及其密码
-	 * @see com.smarttrip.service.IUserService#selectByMobile()
-	 * */
-	@Override
-	public User selectByMobile(String mobile){
-		if(mobile == null  ||  mobile.equals("")){
-			logger.debug("手机号不能为空");
-			return null;
-		}
-		return userMapper.selectByMobile(mobile);
-	}
 
 	/**
 	 * 检查用户密码是否正确
@@ -134,5 +108,17 @@ public class UserService implements IUserService {
 		
 		if (user.getPassword().equals(password))return true;
 		else return false;
+	}
+
+	@Override
+	public List<User> selectByPage(RowBounds rb) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User selectByMobile(String mobile) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
