@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.smarttrip.dao.RoutethemeMapper" >
-  <resultMap id="BaseResultMap" type="com.smarttrip.domain.Routetheme" >
+<mapper namespace="com.smarttrip.dao.RouteThemeMapper" >
+  <resultMap id="BaseResultMap" type="com.smarttrip.domain.RouteTheme" >
     <id column="id" property="id" jdbcType="CHAR" />
     <result column="routeId" property="routeId" jdbcType="CHAR" />
     <result column="themeId" property="themeId" jdbcType="CHAR" />
@@ -10,11 +10,11 @@
     delete from routetheme
     where id = #{id,jdbcType=CHAR}
   </delete>
-  <insert id="insert" parameterType="com.smarttrip.domain.Routetheme" >
+  <insert id="insert" parameterType="com.smarttrip.domain.RouteTheme" >
     insert into routetheme (id, routeId, themeId)
     values (#{id,jdbcType=CHAR}, #{routeId,jdbcType=CHAR}, #{themeId,jdbcType=CHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.smarttrip.domain.Routetheme" >
+  <update id="updateByPrimaryKey" parameterType="com.smarttrip.domain.RouteTheme" >
     update routetheme
     set routeId = #{routeId,jdbcType=CHAR},
       themeId = #{themeId,jdbcType=CHAR}
