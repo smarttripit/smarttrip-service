@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smarttrip.dao.ThemeMapper" >
+  <resultMap id="BaseResultMap" type="com.smarttrip.domain.Theme" >
+    <id column="themeId" property="themeId" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from theme
+    where themeId = #{themeId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.smarttrip.domain.Theme" >
+    insert into theme (themeId, name)
+    values (#{themeId,jdbcType=CHAR}, #{name,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.smarttrip.domain.Theme" >
+    update theme
+    set name = #{name,jdbcType=VARCHAR}
+    where themeId = #{themeId,jdbcType=CHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select themeId, name
+    from theme
+    where themeId = #{themeId,jdbcType=CHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select themeId, name
+    from theme
+  </select>
+</mapper>

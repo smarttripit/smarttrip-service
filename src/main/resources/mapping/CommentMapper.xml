@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smarttrip.dao.CommentMapper" >
+  <resultMap id="BaseResultMap" type="com.smarttrip.domain.Comment" >
+    <id column="commentId" property="commentId" jdbcType="CHAR" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="productId" property="productId" jdbcType="CHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="TINYINT" />
+    <result column="commentTime" property="commentTime" jdbcType="CHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from comment
+    where commentId = #{commentId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.smarttrip.domain.Comment" >
+    insert into comment (commentId, type, productId, 
+      content, score, commentTime
+      )
+    values (#{commentId,jdbcType=CHAR}, #{type,jdbcType=CHAR}, #{productId,jdbcType=CHAR}, 
+      #{content,jdbcType=VARCHAR}, #{score,jdbcType=TINYINT}, #{commentTime,jdbcType=CHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.smarttrip.domain.Comment" >
+    update comment
+    set type = #{type,jdbcType=CHAR},
+      productId = #{productId,jdbcType=CHAR},
+      content = #{content,jdbcType=VARCHAR},
+      score = #{score,jdbcType=TINYINT},
+      commentTime = #{commentTime,jdbcType=CHAR}
+    where commentId = #{commentId,jdbcType=CHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select commentId, type, productId, content, score, commentTime
+    from comment
+    where commentId = #{commentId,jdbcType=CHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select commentId, type, productId, content, score, commentTime
+    from comment
+  </select>
+</mapper>
