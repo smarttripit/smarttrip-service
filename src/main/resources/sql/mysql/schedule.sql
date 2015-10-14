@@ -25,7 +25,7 @@ CREATE TABLE `schedule` (
   `order` int(11) NOT NULL DEFAULT '0' COMMENT '顺序。顺序号小的排在前面。',
   `type` char(1) NOT NULL COMMENT '类型。1；驾车；2：住宿；3：餐饮；4：景点',
   `name` varchar(50) DEFAULT NULL COMMENT '名称。比如：某个景点的名称是xx村。',
-  `abstract` varchar(50) DEFAULT NULL COMMENT '简介',
+  `summary` varchar(50) DEFAULT NULL COMMENT '简介',
   `description` longtext COMMENT '详情',
   `thumbnail` char(32) DEFAULT NULL COMMENT '缩略图',
   `link` varchar(200) DEFAULT NULL COMMENT '链接。对于景点、住宿、餐饮可能会链接到具体详情页。',
