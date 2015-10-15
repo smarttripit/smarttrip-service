@@ -10,7 +10,5 @@ public interface RouteThemeMapper {
 
     RouteTheme selectByPrimaryKey(String id);
 
-    List<RouteTheme> selectAll();
-
     int updateByPrimaryKey(RouteTheme record);
 }

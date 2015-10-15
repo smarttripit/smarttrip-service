@@ -10,7 +10,5 @@ public interface UserMapper {
 
     User selectByPrimaryKey(String id);
 
-    List<User> selectAll();
-
     int updateByPrimaryKey(User record);
 }

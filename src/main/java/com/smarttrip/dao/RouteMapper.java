@@ -10,7 +10,5 @@ public interface RouteMapper {
 
     Route selectByPrimaryKey(String routeId);
 
-    List<Route> selectAll();
-
     int updateByPrimaryKey(Route record);
 }

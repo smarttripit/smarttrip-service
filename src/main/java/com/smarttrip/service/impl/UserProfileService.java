@@ -45,14 +45,6 @@ public class UserProfileService implements IUserProfileService {
 		return null;
 	}
 
-	/**
-	 * TODO 简单描述该方法的实现功能（可选）.
-	 * @see com.smarttrip.service.IUserProfileService#selectAll()
-	 */
-	@Override
-	public List<UserProfile> selectAll() {
-		return null;
-	}
 
 	/**
 	 * TODO 简单描述该方法的实现功能（可选）.

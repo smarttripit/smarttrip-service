@@ -11,7 +11,5 @@ public interface UserProfileMapper {
 
     UserProfile selectByPrimaryKey(String id);
 
-    List<UserProfile> selectAll();
-
     int updateByPrimaryKey(UserProfile record);
 }

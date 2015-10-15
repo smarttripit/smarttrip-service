@@ -10,7 +10,5 @@ public interface ScheduleMapper {
 
     Schedule selectByPrimaryKey(String scheduleId);
 
-    List<Schedule> selectAll();
-
     int updateByPrimaryKey(Schedule record);
 }
