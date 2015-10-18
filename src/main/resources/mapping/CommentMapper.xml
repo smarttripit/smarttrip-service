@@ -8,6 +8,7 @@
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="score" property="score" jdbcType="TINYINT" />
     <result column="commentTime" property="commentTime" jdbcType="CHAR" />
+    <result column="visitorId" property="visitorId" jdbcType="CHAR" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from comment
@@ -15,11 +16,11 @@
   </delete>
   <insert id="insert" parameterType="com.smarttrip.domain.Comment" >
     insert into comment (commentId, type, productId, 
-      content, score, commentTime
-      )
+      content, score, commentTime, 
+      visitorId)
     values (#{commentId,jdbcType=CHAR}, #{type,jdbcType=CHAR}, #{productId,jdbcType=CHAR}, 
-      #{content,jdbcType=VARCHAR}, #{score,jdbcType=TINYINT}, #{commentTime,jdbcType=CHAR}
-      )
+      #{content,jdbcType=VARCHAR}, #{score,jdbcType=TINYINT}, #{commentTime,jdbcType=CHAR}, 
+      #{visitorId,jdbcType=CHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.smarttrip.domain.Comment" >
     update comment
@@ -27,16 +28,17 @@
       productId = #{productId,jdbcType=CHAR},
       content = #{content,jdbcType=VARCHAR},
       score = #{score,jdbcType=TINYINT},
-      commentTime = #{commentTime,jdbcType=CHAR}
+      commentTime = #{commentTime,jdbcType=CHAR},
+      visitorId = #{visitorId,jdbcType=CHAR}
     where commentId = #{commentId,jdbcType=CHAR}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select commentId, type, productId, content, score, commentTime
+    select commentId, type, productId, content, score, commentTime, visitorId
     from comment
     where commentId = #{commentId,jdbcType=CHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select commentId, type, productId, content, score, commentTime
+    select commentId, type, productId, content, score, commentTime, visitorId
     from comment
   </select>
 </mapper>

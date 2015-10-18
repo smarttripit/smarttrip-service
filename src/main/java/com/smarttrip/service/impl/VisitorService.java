@@ -5,9 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.smarttrip.dao.VistorMapper;
-import com.smarttrip.domain.Vistor;
-import com.smarttrip.service.IVistorService;
+import com.smarttrip.dao.VisitorMapper;
+import com.smarttrip.domain.Visitor;
+import com.smarttrip.service.IVisitorService;
 
 /**
  * IVistorService的实现类. <br/>
@@ -17,18 +17,18 @@ import com.smarttrip.service.IVistorService;
  */
 @Service("vistorService")
 @Transactional
-public class VistorService implements IVistorService{
+public class VisitorService implements IVisitorService{
 	
-	private Logger logger = LoggerFactory.getLogger(VistorService.class);
+	private Logger logger = LoggerFactory.getLogger(VisitorService.class);
 	@Autowired
-	private VistorMapper vistorMapper;
+	private VisitorMapper vistorMapper;
 	
 	/**
 	 * 插入.
-	 * @see com.smarttrip.service.IVistorService#insert(com.smarttrip.domain.Vistor)
+	 * @see com.smarttrip.service.IVisitorService#insert(com.smarttrip.domain.Vistor)
 	 */
 	@Override
-	public int insert(Vistor vistor) {
+	public int insert(Visitor vistor) {
 		if(vistor == null){
 			logger.error("vistor不能为null");
 			throw new NullPointerException("vistor不能为null");
@@ -39,7 +39,7 @@ public class VistorService implements IVistorService{
 	
 	/**
 	 * 删除.
-	 * @see com.smarttrip.service.IVistorService#deleteByPrimaryKey(java.lang.String)
+	 * @see com.smarttrip.service.IVisitorService#deleteByPrimaryKey(java.lang.String)
 	 */
 	@Override
 	public int deleteByPrimaryKey(String vistorId) {
@@ -53,10 +53,10 @@ public class VistorService implements IVistorService{
 	
 	/**
 	 * 更新.
-	 * @see com.smarttrip.service.IVistorService#updateByPrimaryKey(com.smarttrip.domain.Vistor)
+	 * @see com.smarttrip.service.IVisitorService#updateByPrimaryKey(com.smarttrip.domain.Vistor)
 	 */
 	@Override
-	public int updateByPrimaryKey(Vistor vistor) {
+	public int updateByPrimaryKey(Visitor vistor) {
 		if(vistor == null){
 			logger.error("vistor不能为null");
 			throw new NullPointerException("vistor不能为null");
@@ -67,15 +67,15 @@ public class VistorService implements IVistorService{
 	
 	/**
 	 * 查询.
-	 * @see com.smarttrip.service.IVistorService#selectByPrimaryKey(java.lang.String)
+	 * @see com.smarttrip.service.IVisitorService#selectByPrimaryKey(java.lang.String)
 	 */
 	@Override
-	public Vistor selectByPrimaryKey(String vistorId) {
+	public Visitor selectByPrimaryKey(String vistorId) {
 		if(vistorId == null  ||  vistorId.equals("")){
 			logger.error("vistorId不能为空");
 			throw new NullPointerException("vistorId不能为空");
 		}
-		Vistor Vistor = vistorMapper.selectByPrimaryKey(vistorId);
+		Visitor Vistor = vistorMapper.selectByPrimaryKey(vistorId);
 		return Vistor;
 	}
 }

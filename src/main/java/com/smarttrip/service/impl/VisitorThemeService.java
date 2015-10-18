@@ -5,9 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.smarttrip.dao.VistorThemeMapper;
-import com.smarttrip.domain.VistorTheme;
-import com.smarttrip.service.IVistorThemeService;
+import com.smarttrip.dao.VisitorThemeMapper;
+import com.smarttrip.domain.VisitorTheme;
+import com.smarttrip.service.IVisitorThemeService;
 
 /**
  * IVistorThemeService的实现类. <br/>
@@ -17,18 +17,18 @@ import com.smarttrip.service.IVistorThemeService;
  */
 @Service("vistorThemeService")
 @Transactional
-public class VistorThemeService implements IVistorThemeService{
+public class VisitorThemeService implements IVisitorThemeService{
 	
-	private Logger logger = LoggerFactory.getLogger(VistorThemeService.class);
+	private Logger logger = LoggerFactory.getLogger(VisitorThemeService.class);
 	@Autowired
-	private VistorThemeMapper vistorThemeMapper;
+	private VisitorThemeMapper vistorThemeMapper;
 	
 	/**
 	 * 插入.
-	 * @see com.smarttrip.service.IVistorThemeService#insert(com.smarttrip.domain.VistorTheme)
+	 * @see com.smarttrip.service.IVisitorThemeService#insert(com.smarttrip.domain.VistorTheme)
 	 */
 	@Override
-	public int insert(VistorTheme vistorTheme) {
+	public int insert(VisitorTheme vistorTheme) {
 		if(vistorTheme == null){
 			logger.error("VistorTheme不能为null");
 			throw new NullPointerException("VistorTheme不能为null");
@@ -39,7 +39,7 @@ public class VistorThemeService implements IVistorThemeService{
 	
 	/**
 	 * 删除.
-	 * @see com.smarttrip.service.IVistorThemeService#deleteByPrimaryKey(java.lang.String)
+	 * @see com.smarttrip.service.IVisitorThemeService#deleteByPrimaryKey(java.lang.String)
 	 */
 	@Override
 	public int deleteByPrimaryKey(String vistorThemeId) {
@@ -53,10 +53,10 @@ public class VistorThemeService implements IVistorThemeService{
 	
 	/**
 	 * 更新.
-	 * @see com.smarttrip.service.IVistorThemeService#updateByPrimaryKey(com.smarttrip.domain.VistorTheme)
+	 * @see com.smarttrip.service.IVisitorThemeService#updateByPrimaryKey(com.smarttrip.domain.VistorTheme)
 	 */
 	@Override
-	public int updateByPrimaryKey(VistorTheme vistorTheme) {
+	public int updateByPrimaryKey(VisitorTheme vistorTheme) {
 		if(vistorTheme == null){
 			logger.error("VistorTheme不能为null");
 			throw new NullPointerException("VistorTheme不能为null");
@@ -67,15 +67,15 @@ public class VistorThemeService implements IVistorThemeService{
 	
 	/**
 	 * 查询.
-	 * @see com.smarttrip.service.IVistorThemeService#selectByPrimaryKey(java.lang.String)
+	 * @see com.smarttrip.service.IVisitorThemeService#selectByPrimaryKey(java.lang.String)
 	 */
 	@Override
-	public VistorTheme selectByPrimaryKey(String vistorThemeId) {
+	public VisitorTheme selectByPrimaryKey(String vistorThemeId) {
 		if(vistorThemeId == null  ||  vistorThemeId.equals("")){
 			logger.error("vistorThemeId不能为空");
 			throw new NullPointerException("vistorThemeId不能为空");
 		}
-		VistorTheme vistorTheme = vistorThemeMapper.selectByPrimaryKey(vistorThemeId);
+		VisitorTheme vistorTheme = vistorThemeMapper.selectByPrimaryKey(vistorThemeId);
 		return vistorTheme;
 	}
 }

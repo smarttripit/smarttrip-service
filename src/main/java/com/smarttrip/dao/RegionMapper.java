@@ -10,5 +10,7 @@ public interface RegionMapper {
 
     Region selectByPrimaryKey(String regionId);
 
+    List<Region> selectAll();
+
     int updateByPrimaryKey(Region record);
 }
