@@ -10,30 +10,30 @@ import com.smarttrip.domain.VisitorTheme;
 import com.smarttrip.service.IVisitorThemeService;
 
 /**
- * IVistorThemeService的实现类. <br/>
+ * IVisitorThemeService的实现类. <br/>
  * date: 2015年10月15日 10:19 <br/>
  *
  * @author 1361200381@qq.com
  */
-@Service("vistorThemeService")
+@Service("visitorThemeService")
 @Transactional
 public class VisitorThemeService implements IVisitorThemeService{
 	
 	private Logger logger = LoggerFactory.getLogger(VisitorThemeService.class);
 	@Autowired
-	private VisitorThemeMapper vistorThemeMapper;
+	private VisitorThemeMapper visitorThemeMapper;
 	
 	/**
 	 * 插入.
-	 * @see com.smarttrip.service.IVisitorThemeService#insert(com.smarttrip.domain.VistorTheme)
+	 * @see com.smarttrip.service.IVisitorThemeService#insert(com.smarttrip.domain.VisitorTheme)
 	 */
 	@Override
-	public int insert(VisitorTheme vistorTheme) {
-		if(vistorTheme == null){
-			logger.error("VistorTheme不能为null");
-			throw new NullPointerException("VistorTheme不能为null");
+	public int insert(VisitorTheme visitorTheme) {
+		if(visitorTheme == null){
+			logger.error("VisitorTheme不能为null");
+			throw new NullPointerException("VisitorTheme不能为null");
 		}
-		int result = vistorThemeMapper.insert(vistorTheme);
+		int result = visitorThemeMapper.insert(visitorTheme);
 		return result;
 	}
 	
@@ -42,26 +42,26 @@ public class VisitorThemeService implements IVisitorThemeService{
 	 * @see com.smarttrip.service.IVisitorThemeService#deleteByPrimaryKey(java.lang.String)
 	 */
 	@Override
-	public int deleteByPrimaryKey(String vistorThemeId) {
-		if(vistorThemeId == null  ||  vistorThemeId.equals("")){
-			logger.error("vistorThemeId不能为空");
-			throw new NullPointerException("vistorThemeId不能为空");
+	public int deleteByPrimaryKey(String visitorThemeId) {
+		if(visitorThemeId == null  ||  visitorThemeId.equals("")){
+			logger.error("visitorThemeId不能为空");
+			throw new NullPointerException("visitorThemeId不能为空");
 		}
-		int count = vistorThemeMapper.deleteByPrimaryKey(vistorThemeId);
+		int count = visitorThemeMapper.deleteByPrimaryKey(visitorThemeId);
 		return count;
 	}
 	
 	/**
 	 * 更新.
-	 * @see com.smarttrip.service.IVisitorThemeService#updateByPrimaryKey(com.smarttrip.domain.VistorTheme)
+	 * @see com.smarttrip.service.IVisitorThemeService#updateByPrimaryKey(com.smarttrip.domain.VisitorTheme)
 	 */
 	@Override
-	public int updateByPrimaryKey(VisitorTheme vistorTheme) {
-		if(vistorTheme == null){
-			logger.error("VistorTheme不能为null");
-			throw new NullPointerException("VistorTheme不能为null");
+	public int updateByPrimaryKey(VisitorTheme visitorTheme) {
+		if(visitorTheme == null){
+			logger.error("VisitorTheme不能为null");
+			throw new NullPointerException("VisitorTheme不能为null");
 		}
-		int count = vistorThemeMapper.updateByPrimaryKey(vistorTheme);
+		int count = visitorThemeMapper.updateByPrimaryKey(visitorTheme);
 		return count;
 	}
 	
@@ -70,12 +70,12 @@ public class VisitorThemeService implements IVisitorThemeService{
 	 * @see com.smarttrip.service.IVisitorThemeService#selectByPrimaryKey(java.lang.String)
 	 */
 	@Override
-	public VisitorTheme selectByPrimaryKey(String vistorThemeId) {
-		if(vistorThemeId == null  ||  vistorThemeId.equals("")){
-			logger.error("vistorThemeId不能为空");
-			throw new NullPointerException("vistorThemeId不能为空");
+	public VisitorTheme selectByPrimaryKey(String visitorThemeId) {
+		if(visitorThemeId == null  ||  visitorThemeId.equals("")){
+			logger.error("visitorThemeId不能为空");
+			throw new NullPointerException("visitorThemeId不能为空");
 		}
-		VisitorTheme vistorTheme = vistorThemeMapper.selectByPrimaryKey(vistorThemeId);
-		return vistorTheme;
+		VisitorTheme visitorTheme = visitorThemeMapper.selectByPrimaryKey(visitorThemeId);
+		return visitorTheme;
 	}
 }
