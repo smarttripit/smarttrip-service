@@ -1,22 +1,24 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
-Source Server         : 本机3306-wproot
-Source Server Version : 50617
-Source Host           : localhost:3306
-Source Database       : turnipweb
+ Source Server         : localhost
+ Source Server Type    : MySQL
+ Source Server Version : 50627
+ Source Host           : localhost
+ Source Database       : smarttrip
 
-Target Server Type    : MYSQL
-Target Server Version : 50617
-File Encoding         : 65001
+ Target Server Type    : MySQL
+ Target Server Version : 50627
+ File Encoding         : utf-8
 
-Date: 2015-07-31 00:21:14
+ Date: 10/18/2015 11:12:05 AM
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for `user`
+--  Table structure for `user`
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
@@ -35,8 +37,4 @@ CREATE TABLE `user` (
   KEY `mobileNo_index` (`mobileNo`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='此表主要用于记录用户的登录注册信息。其他一些信息，比如：生日、学历、家庭住址等在另外的表中记录。';
 
--- ----------------------------
--- Records of user
--- ----------------------------
-INSERT INTO `user` VALUES ('1', '名称', 'sfasgfaf', '24', '', '', null, '', '', '1');
-INSERT INTO `user` VALUES ('5df37f22b42a4853a6d243640cea5d54', 'name_test', 'de29d77448ebb2e6dade9e1f557c824b', 'da7a1a894e0447278381c5c247bb3a01', null, null, null, null, '2015:16:31 00:16:08', '1');
+SET FOREIGN_KEY_CHECKS = 1;

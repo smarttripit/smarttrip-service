@@ -1,22 +1,24 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
-Source Server         : 本机3306-root
-Source Server Version : 50617
-Source Host           : localhost:3306
-Source Database       : smarttrip
+ Source Server         : localhost
+ Source Server Type    : MySQL
+ Source Server Version : 50627
+ Source Host           : localhost
+ Source Database       : smarttrip
 
-Target Server Type    : MYSQL
-Target Server Version : 50617
-File Encoding         : 65001
+ Target Server Type    : MySQL
+ Target Server Version : 50627
+ File Encoding         : utf-8
 
-Date: 2015-10-12 11:21:31
+ Date: 10/18/2015 11:08:21 AM
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for `comment`
+--  Table structure for `comment`
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
@@ -26,10 +28,8 @@ CREATE TABLE `comment` (
   `content` varchar(1000) NOT NULL,
   `score` tinyint(4) NOT NULL DEFAULT '5' COMMENT '评分。5分是满分',
   `commentTime` char(19) NOT NULL COMMENT '评论时间（格式:yyyy:mm:dd HH:mm:ss）',
+  `visitorId` char(32) NOT NULL COMMENT '游客的id。关联visitor表。',
   PRIMARY KEY (`commentId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of comment
--- ----------------------------
-INSERT INTO `comment` VALUES ('2314', '01', '', '', '5', '');
+SET FOREIGN_KEY_CHECKS = 1;

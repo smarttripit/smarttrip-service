@@ -1,22 +1,24 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
-Source Server         : 本机3306-root
-Source Server Version : 50617
-Source Host           : localhost:3306
-Source Database       : smarttrip
+ Source Server         : localhost
+ Source Server Type    : MySQL
+ Source Server Version : 50627
+ Source Host           : localhost
+ Source Database       : smarttrip
 
-Target Server Type    : MYSQL
-Target Server Version : 50617
-File Encoding         : 65001
+ Target Server Type    : MySQL
+ Target Server Version : 50627
+ File Encoding         : utf-8
 
-Date: 2015-10-12 11:23:05
+ Date: 10/18/2015 11:11:54 AM
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for `theme`
+--  Table structure for `theme`
 -- ----------------------------
 DROP TABLE IF EXISTS `theme`;
 CREATE TABLE `theme` (
@@ -25,6 +27,4 @@ CREATE TABLE `theme` (
   PRIMARY KEY (`themeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='主题表。比如：亲子、烧烤、骑行。';
 
--- ----------------------------
--- Records of theme
--- ----------------------------
+SET FOREIGN_KEY_CHECKS = 1;

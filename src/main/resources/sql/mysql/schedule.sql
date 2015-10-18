@@ -1,22 +1,24 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
-Source Server         : 本机3306-root
-Source Server Version : 50617
-Source Host           : localhost:3306
-Source Database       : smarttrip
+ Source Server         : localhost
+ Source Server Type    : MySQL
+ Source Server Version : 50627
+ Source Host           : localhost
+ Source Database       : smarttrip
 
-Target Server Type    : MYSQL
-Target Server Version : 50617
-File Encoding         : 65001
+ Target Server Type    : MySQL
+ Target Server Version : 50627
+ File Encoding         : utf-8
 
-Date: 2015-10-12 11:23:00
+ Date: 10/18/2015 11:11:47 AM
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for `schedule`
+--  Table structure for `schedule`
 -- ----------------------------
 DROP TABLE IF EXISTS `schedule`;
 CREATE TABLE `schedule` (
@@ -33,6 +35,4 @@ CREATE TABLE `schedule` (
   PRIMARY KEY (`scheduleId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='经典线路行程表，用于记录经典线路的行程安排。';
 
--- ----------------------------
--- Records of schedule
--- ----------------------------
+SET FOREIGN_KEY_CHECKS = 1;

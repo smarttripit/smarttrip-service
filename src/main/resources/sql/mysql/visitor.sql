@@ -1,26 +1,28 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
-Source Server         : 本机3306-root
-Source Server Version : 50617
-Source Host           : localhost:3306
-Source Database       : smarttrip
+ Source Server         : localhost
+ Source Server Type    : MySQL
+ Source Server Version : 50627
+ Source Host           : localhost
+ Source Database       : smarttrip
 
-Target Server Type    : MYSQL
-Target Server Version : 50617
-File Encoding         : 65001
+ Target Server Type    : MySQL
+ Target Server Version : 50627
+ File Encoding         : utf-8
 
-Date: 2015-10-12 11:23:10
+ Date: 10/18/2015 11:12:24 AM
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for `vistor`
+--  Table structure for `visitor`
 -- ----------------------------
-DROP TABLE IF EXISTS `vistor`;
-CREATE TABLE `vistor` (
-  `vistorId` char(32) NOT NULL,
+DROP TABLE IF EXISTS `visitor`;
+CREATE TABLE `visitor` (
+  `visitorId` char(32) NOT NULL,
   `name` varchar(40) NOT NULL COMMENT '用户名（登录使用）',
   `password` char(32) NOT NULL COMMENT '密码',
   `salt` char(32) NOT NULL COMMENT '密码的加盐',
@@ -41,9 +43,8 @@ CREATE TABLE `vistor` (
   `education` varchar(30) DEFAULT NULL COMMENT '教育',
   `introduction` varchar(1000) DEFAULT NULL COMMENT '个人简介',
   `website` varchar(200) DEFAULT NULL COMMENT '个人网站',
-  PRIMARY KEY (`vistorId`)
+  `city` char(100) DEFAULT NULL COMMENT '游客所在的城市（在游客中心，由游客自己维护）',
+  PRIMARY KEY (`visitorId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='游客表。用于记录游客的信息。';
 
--- ----------------------------
--- Records of vistor
--- ----------------------------
+SET FOREIGN_KEY_CHECKS = 1;

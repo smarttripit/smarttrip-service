@@ -1,25 +1,27 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
-Source Server         : 本机3306-wproot
-Source Server Version : 50617
-Source Host           : localhost:3306
-Source Database       : turnipweb
+ Source Server         : localhost
+ Source Server Type    : MySQL
+ Source Server Version : 50627
+ Source Host           : localhost
+ Source Database       : smarttrip
 
-Target Server Type    : MYSQL
-Target Server Version : 50617
-File Encoding         : 65001
+ Target Server Type    : MySQL
+ Target Server Version : 50627
+ File Encoding         : utf-8
 
-Date: 2015-07-31 00:21:21
+ Date: 10/18/2015 11:12:17 AM
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for `userprofile`
+--  Table structure for `userProfile`
 -- ----------------------------
-DROP TABLE IF EXISTS `userprofile`;
-CREATE TABLE `userprofile` (
+DROP TABLE IF EXISTS `userProfile`;
+CREATE TABLE `userProfile` (
   `id` varchar(32) NOT NULL DEFAULT '',
   `userId` varchar(32) DEFAULT NULL COMMENT '关联user表的主键',
   `birthday` varchar(19) DEFAULT NULL COMMENT '生日（格式：yyyy:mm:dd HH:mm:ss）',
@@ -27,6 +29,4 @@ CREATE TABLE `userprofile` (
   UNIQUE KEY `userId_index` (`userId`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of userprofile
--- ----------------------------
+SET FOREIGN_KEY_CHECKS = 1;
