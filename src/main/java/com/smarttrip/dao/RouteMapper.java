@@ -13,4 +13,6 @@ public interface RouteMapper {
     List<Route> selectAll();
 
     int updateByPrimaryKey(Route record);
+    
+    List<Route> selectTop3ByDisplayOrder();
 }

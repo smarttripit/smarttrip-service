@@ -8,7 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.smarttrip.dao.RouteMapper;
+import com.smarttrip.dao.RouteThemeMapper;
+import com.smarttrip.dao.ThemeMapper;
+import com.smarttrip.domain.ClassicalRoute;
 import com.smarttrip.domain.Route;
+import com.smarttrip.domain.RouteTheme;
 import com.smarttrip.service.IRouteService;
 
 /**
@@ -22,6 +26,8 @@ public class RouteService implements IRouteService {
 
 	@Autowired
 	private RouteMapper routeMapper;
+	private RouteThemeMapper routeThemeMapper;
+	private ThemeMapper themeMapper;
 	
 	@Override
 	public Route selectByPrimaryKey(String routeId) {
@@ -73,5 +79,25 @@ public class RouteService implements IRouteService {
 		return null;
 	}
 
+	@Override
+	public List<ClassicalRoute> selectTop3ByDisplayOrder(){
+		List<ClassicalRoute> classicalRouteList = new ArrayList<ClassicalRoute>();
+		//获取主页的三条线路
+		List<Route> route = routeMapper.selectTop3ByDisplayOrder();
+		//分别获取三条线路的主题，并最后封装成classicalRoute类型
+		for (int i = 0; i < route.size(); i++){
+			List<RouteTheme> routeTheme = routeThemeMapper.selectByRouteId(route.get(i).getRouteId());
+			List<String> routeThemeName = new ArrayList<String>();
+			for (int j = 0; j < routeTheme.size(); j++){
+				routeThemeName.add(themeMapper.selectByPrimaryKey(routeTheme.get(j).getRouteId()).getName());
+			}
+			ClassicalRoute classicalRoute = new ClassicalRoute();
+			classicalRoute.setRoute(route.get(i));
+			classicalRoute.setRouteTheme(routeThemeName);
+			classicalRouteList.add(classicalRoute);
+		}
+		return classicalRouteList;
+	}
+	
 
 }

@@ -77,4 +77,11 @@
     detail, feeDescription, bookingNotice, detailRecommendation
     from route
   </select>
+  <select id="selectTop3ByDisplayOrder" resultMap="BaseResultMap">
+  	select top 3 routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
+    purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
+    detail, feeDescription, bookingNotice, detailRecommendation
+    from route
+    order by displayOrder
+  </select>
 </mapper>

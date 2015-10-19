@@ -13,4 +13,6 @@ public interface RouteThemeMapper {
     List<RouteTheme> selectAll();
 
     int updateByPrimaryKey(RouteTheme record);
+    
+    List<RouteTheme> selectByRouteId(String routeId);
 }
