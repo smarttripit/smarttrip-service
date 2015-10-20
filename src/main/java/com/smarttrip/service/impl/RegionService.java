@@ -1,5 +1,7 @@
 package com.smarttrip.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +72,17 @@ public class RegionService implements IRegionService {
 			throw new NullPointerException("regionId不能为空");
 		}
 		Region record = regionMapper.selectByPrimaryKey(regionId);
+		return record;
+	}
+	
+	@Override
+	public List<Region> selectByFirstRegion(String city){
+		// TODO Auto-generated method stub
+		if (city == null || city.equals("")){
+			logger.error("city不能为空");
+			throw new NullPointerException("city不能为空");
+		}
+		List<Region> record = regionMapper.selectByFirstRegion(city);
 		return record;
 	}
 

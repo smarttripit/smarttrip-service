@@ -13,4 +13,6 @@ public interface RegionMapper {
     List<Region> selectAll();
 
     int updateByPrimaryKey(Region record);
+    
+    List<Region> selectByFirstRegion(String firstRegion);
 }

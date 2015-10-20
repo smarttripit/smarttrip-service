@@ -31,4 +31,9 @@
     select regionId, firstRegion, secondRegion
     from region
   </select>
+  <select id="selectByFirstRegion" resultMap="BaseResultMap">
+  	select regionId, firstRegion, secondRegion
+  	from region
+  	where firstRegion = #{firstRegion,jdbcType=CHAR}
+  </select>
 </mapper>
