@@ -85,4 +85,25 @@
     birthdaySecret, gender, profession, education, introduction, website, city
     from visitor
   </select>
+  <select id="selectByMobileNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select visitorId, name, password, salt, realName, realNameSecret, nickName, email, 
+    emailActivated, mobileNo, registerTime, status, headerLarge, headerSmall, birthday, 
+    birthdaySecret, gender, profession, education, introduction, website, city
+    from visitor
+    where mobileNo = #{mobileNo,jdbcType=CHAR}
+  </select>
+  <select id="selectByEmail" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select visitorId, name, password, salt, realName, realNameSecret, nickName, email, 
+    emailActivated, mobileNo, registerTime, status, headerLarge, headerSmall, birthday, 
+    birthdaySecret, gender, profession, education, introduction, website, city
+    from visitor
+    where email = #{email,jdbcType=CHAR}
+  </select>
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select visitorId, name, password, salt, realName, realNameSecret, nickName, email, 
+    emailActivated, mobileNo, registerTime, status, headerLarge, headerSmall, birthday, 
+    birthdaySecret, gender, profession, education, introduction, website, city
+    from visitor
+    where name = #{name,jdbcType=CHAR}
+  </select>
 </mapper>

@@ -13,4 +13,6 @@ public interface VisitorThemeMapper {
     List<VisitorTheme> selectAll();
 
     int updateByPrimaryKey(VisitorTheme record);
+
+	List<VisitorTheme> selectByVisitorId(String visitorId);
 }

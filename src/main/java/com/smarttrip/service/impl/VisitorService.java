@@ -78,4 +78,34 @@ public class VisitorService implements IVisitorService{
 		Visitor Visitor = visitorMapper.selectByPrimaryKey(visitorId);
 		return Visitor;
 	}
+	
+	@Override
+	public Visitor selectByMobileNo(String mobileNo) {
+		if(mobileNo == null  ||  mobileNo.equals("")){
+			logger.error("mobileNo不能为空");
+			throw new NullPointerException("mobileNo不能为空");
+		}
+		Visitor Visitor = visitorMapper.selectByMobileNo(mobileNo);
+		return Visitor;
+	}
+	
+	@Override
+	public Visitor selectByEmail(String email) {
+		if(email == null  ||  email.equals("")){
+			logger.error("email不能为空");
+			throw new NullPointerException("email不能为空");
+		}
+		Visitor Visitor = visitorMapper.selectByEmail(email);
+		return Visitor;
+	}
+	
+	@Override
+	public Visitor selectByName(String name) {
+		if(name == null  ||  name.equals("")){
+			logger.error("name不能为空");
+			throw new NullPointerException("name不能为空");
+		}
+		Visitor Visitor = visitorMapper.selectByName(name);
+		return Visitor;
+	}
 }

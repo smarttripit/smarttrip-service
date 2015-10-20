@@ -31,4 +31,9 @@
     select id, visitorId, themeId
     from visitortheme
   </select>
+  <select id="selectByVisitorId" resultMap="BaseResultMap" >
+    select id, visitorId, themeId
+    from visitortheme
+    where visitorId = #{visitorId,jdbcType=CHAR}
+  </select>
 </mapper>

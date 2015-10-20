@@ -1,5 +1,7 @@
 package com.smarttrip.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +78,16 @@ public class VisitorThemeService implements IVisitorThemeService{
 			throw new NullPointerException("visitorThemeId不能为空");
 		}
 		VisitorTheme visitorTheme = visitorThemeMapper.selectByPrimaryKey(visitorThemeId);
+		return visitorTheme;
+	}
+	
+	@Override
+	public List<VisitorTheme> selectByVisitorId(String visitorId) {
+		if(visitorId == null  ||  visitorId.equals("")){
+			logger.error("visitorId不能为空");
+			throw new NullPointerException("visitorId不能为空");
+		}
+		List<VisitorTheme> visitorTheme = visitorThemeMapper.selectByVisitorId(visitorId);
 		return visitorTheme;
 	}
 }
