@@ -6,6 +6,9 @@ package com.smarttrip.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.smarttrip.domain.UserProfile;
 import com.smarttrip.service.IUserProfileService;
 
@@ -16,6 +19,8 @@ import com.smarttrip.service.IUserProfileService;
  * @author songjiesdnu@163.com
  * @version 
  */
+@Service("userProfileService")
+@Transactional
 public class UserProfileService implements IUserProfileService {
 
 	/**

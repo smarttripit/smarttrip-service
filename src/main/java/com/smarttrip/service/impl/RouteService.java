@@ -6,6 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.smarttrip.dao.RouteMapper;
 import com.smarttrip.dao.RouteThemeMapper;
@@ -19,7 +21,8 @@ import com.smarttrip.service.IRouteService;
  * @author gaoweibupt@gmail.com
  * @version Date：2015年10月14日下午9:27:26
  */
-
+@Service("routeService")
+@Transactional
 public class RouteService implements IRouteService {
 
 	private Logger logger = LoggerFactory.getLogger(UserService.class);

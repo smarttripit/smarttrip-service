@@ -3,6 +3,8 @@ package com.smarttrip.service.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.smarttrip.dao.ScheduleMapper;
 import com.smarttrip.domain.Schedule;
@@ -12,7 +14,8 @@ import com.smarttrip.service.IScheduleService;
  * @author gaoweibupt@gmail.com
  * @version Date：2015年10月14日下午9:29:33
  */
-
+@Service("scheduleService")
+@Transactional
 public class ScheduleService implements IScheduleService {
 	private Logger logger = LoggerFactory.getLogger(UserService.class);
 
