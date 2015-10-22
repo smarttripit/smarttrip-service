@@ -27,4 +27,9 @@
     select themeId, name
     from theme
   </select>
+  <select id="selectByThemeName" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select themeId, name
+    from theme
+  	where name = #{name, jdbcType=CHAR}
+  </select>
 </mapper>

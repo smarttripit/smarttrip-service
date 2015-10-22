@@ -1,5 +1,6 @@
 package com.smarttrip.service.impl;
 
+
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.smarttrip.dao.RouteThemeMapper;
-import com.smarttrip.domain.Route;
 import com.smarttrip.domain.RouteTheme;
 import com.smarttrip.service.IRouteThemeService;
 
@@ -68,6 +68,29 @@ public class RouteThemeService implements IRouteThemeService {
 		RouteTheme record = routeThemeMapper.selectByPrimaryKey(id);
 		return record;
 	}
+	
+	@Override
+	public List<RouteTheme> selectByRouteId(String routeId){
+		// TODO Auto-generated method stub
+		if (routeId == null || routeId.equals("")){
+			logger.error("routeId不能为null");
+			throw new NullPointerException("routeId不能为null");
+		}
+		List<RouteTheme> record = routeThemeMapper.selectByRouteId(routeId);
+		return record;
+	}
+	
+	@Override
+	public List<RouteTheme> selectByThemeId(String themeId){
+		// TODO Auto-generated method stub
+		if (themeId == null || themeId.equals("")){
+			logger.error("themeId不能为null");
+			throw new NullPointerException("themeId不能为null");
+		}
+		List<RouteTheme> record = routeThemeMapper.selectByThemeId(themeId);
+		return record;
+	}
+	
 	
 
 	

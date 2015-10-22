@@ -78,10 +78,37 @@
     from route
   </select>
   <select id="selectTop3ByDisplayOrder" resultMap="BaseResultMap">
-  	select top 3 routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
+  	select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
+    purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
+    detail, feeDescription, bookingNotice, detailRecommendation
+    from route 
+    order by displayOrder desc
+    limit 3
+  </select>
+  <select id="selectPeriods" resultMap="java.lang.Integer">
+  	select period
+  	from route
+  </select>
+  <select id="selectByPeriod" resultMap="BaseResultMap" parameterType="int">
+	select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
     purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
     detail, feeDescription, bookingNotice, detailRecommendation
     from route
-    order by displayOrder
+    where period = #{period, jdbcType=INGETER} 	
   </select>
+  <select id="selectByRegionId" resultMap="BaseResultMap" paramaterType="java.lang.String">
+  	select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
+    purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
+    detail, feeDescription, bookingNotice, detailRecommendation
+    from route
+    where regionId = #{regionId, jdbcType=CHAR}
+  </select>
+  <select id="selectByRegionIdAndPeriod" resultMap="BaseResultMap">
+  	select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
+    purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
+    detail, feeDescription, bookingNotice, detailRecommendation
+    from route
+    where regionId = #{regionId, jdbcType=CHAR} and #{period, jdbcType=INTEGER}
+  </select>
+  
 </mapper>

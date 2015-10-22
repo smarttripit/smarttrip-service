@@ -13,4 +13,6 @@ public interface ThemeMapper {
     List<Theme> selectAll();
 
     int updateByPrimaryKey(Theme record);
+    
+    Theme selectByThemeName(String name);
 }

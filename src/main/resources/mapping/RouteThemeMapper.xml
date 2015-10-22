@@ -34,4 +34,9 @@
   	from routetheme
   	where routeId = #{routeId,jdbcType=CHAR}
   </select>
+  <select id="selectByThemeId" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select id, routeId, themeId
+  	from routetheme
+  	where themeId = #{themeId,jdbcType=CHAR}  
+  </select>
 </mapper>

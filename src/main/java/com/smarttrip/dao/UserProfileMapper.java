@@ -2,7 +2,6 @@ package com.smarttrip.dao;
 
 import com.smarttrip.domain.UserProfile;
 
-import java.util.List;
 
 public interface UserProfileMapper {
     int deleteByPrimaryKey(String id);

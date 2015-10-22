@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.smarttrip.dao.RegionMapper;
 import com.smarttrip.dao.RouteMapper;
 import com.smarttrip.dao.RouteThemeMapper;
 import com.smarttrip.dao.ThemeMapper;
-import com.smarttrip.domain.ClassicalRoute;
+import com.smarttrip.domain.Region;
 import com.smarttrip.domain.Route;
 import com.smarttrip.domain.RouteTheme;
+import com.smarttrip.domain.Theme;
 import com.smarttrip.service.IRouteService;
 
 /**
@@ -29,8 +31,15 @@ public class RouteService implements IRouteService {
 
 	@Autowired
 	private RouteMapper routeMapper;
-	private RouteThemeMapper routeThemeMapper;
+	
+	@Autowired
+	private RegionMapper regionMapper;
+	
+	@Autowired 
 	private ThemeMapper themeMapper;
+	
+	@Autowired
+	private RouteThemeMapper routeThemeMapper;
 	
 	@Override
 	public Route selectByPrimaryKey(String routeId) {
@@ -83,24 +92,118 @@ public class RouteService implements IRouteService {
 	}
 
 	@Override
-	public List<ClassicalRoute> selectTop3ByDisplayOrder(){
-		List<ClassicalRoute> classicalRouteList = new ArrayList<ClassicalRoute>();
+	public List<Route> selectTop3ByDisplayOrder(){
 		//获取主页的三条线路
-		List<Route> route = routeMapper.selectTop3ByDisplayOrder();
-		//分别获取三条线路的主题，并最后封装成classicalRoute类型
-		for (int i = 0; i < route.size(); i++){
-			List<RouteTheme> routeTheme = routeThemeMapper.selectByRouteId(route.get(i).getRouteId());
-			List<String> routeThemeName = new ArrayList<String>();
-			for (int j = 0; j < routeTheme.size(); j++){
-				routeThemeName.add(themeMapper.selectByPrimaryKey(routeTheme.get(j).getRouteId()).getName());
-			}
-			ClassicalRoute classicalRoute = new ClassicalRoute();
-			classicalRoute.setRoute(route.get(i));
-			classicalRoute.setRouteTheme(routeThemeName);
-			classicalRouteList.add(classicalRoute);
-		}
-		return classicalRouteList;
+		return routeMapper.selectTop3ByDisplayOrder();
 	}
 	
+	@Override
+	public List<Integer> selectPeriods(){
+		return routeMapper.selectPeriods();
+	}
+
+	@Override
+	public List<Route> selectByRegionId(String regionId){
+		if (regionId == null || regionId.equals("")){
+			logger.error("regionId不能为null");
+			throw new NullPointerException("regionId不能为null");
+		}
+		List<Route> record = routeMapper.selectByRegionId(regionId);
+		return record;
+	}
+	/**
+	 * 按照给定条件查找路线
+	 * <p>每种条件只有一种类型<br>
+	 * 
+	 * 重写：需要些在controller层里面
+	 * 
+	 * 
+	 * 
+	 * */
+	@Override
+	public 	List<Route> selectByConditions(String firstRegion, String secondRegion, String themeName, int period){
+		//仅含有天数信息
+		if (firstRegion == null && secondRegion == null && themeName == null){
+			if (period <= 0){
+				logger.error("查询条件无效");
+				throw new NullPointerException("查询条件无效");
+			}
+			else{
+				List<Route> record = routeMapper.selectByPeriod(period);
+				return record;
+			}
+		}
+		//仅含有城市或区县信息
+		else if (themeName == null && period ==0){
+			List<Region> regions = new ArrayList<>();
+			if (firstRegion != null && secondRegion == null){
+				regions = regionMapper.selectByFirstRegion(firstRegion);	
+				List<Route> result = new ArrayList<>();
+				for (int i = 0; i < regions.size(); i++){
+					List<Route> routes = this.selectByRegionId(regions.get(i).getRegionId());
+					result.addAll(routes);
+				}
+				//返回某城市的路线
+				return result;
+			}
+			else{
+				Region region = regionMapper.selectBySecondRegion(secondRegion);
+				if (region.getFirstRegion().equals(firstRegion)){
+					regions.add(regionMapper.selectBySecondRegion(secondRegion));
+				}else{
+					logger.error("该区县不在该城市中");
+					throw new NullPointerException("该区县不在该城市中");
+				}
+				//返回某区县的路线 
+				return this.selectByRegionId(region.getRegionId());
+			}
+		}
+		//仅含有主题信息或同时含有天数信息
+		else if (firstRegion == null && secondRegion == null){
+			Theme theme = themeMapper.selectByThemeName(themeName);
+			List<Route> result = new ArrayList<>();
+			List<RouteTheme> routeThemes = routeThemeMapper.selectByThemeId(theme.getThemeId());
+			for (int i = 0; i < routeThemes.size(); i++){
+				Route route = routeMapper.selectByPrimaryKey(routeThemes.get(i).getRouteId());
+				if (period == 0 || period == route.getPeriod()){
+					result.add(route);
+				}
+			}
+			return result;
+		}
+		//含有区县信息及主题信息或同时含有天数信息
+		else if ((firstRegion != null || secondRegion != null) && themeName != null){
+			List<Region> regions = new ArrayList<>();
+			List<Route> result = new ArrayList<>();
+			if (secondRegion != null){
+				Region region = regionMapper.selectBySecondRegion(secondRegion);
+				if (region.getFirstRegion().equals(firstRegion)){
+					regions.add(regionMapper.selectBySecondRegion(secondRegion));
+				}else{
+					logger.error("该区县不在该城市中");
+					throw new NullPointerException("该区县不在该城市中");
+				}
+				regions.add(regionMapper.selectBySecondRegion(secondRegion));
+			}
+			else if (firstRegion != null && secondRegion == null){
+				regions = regionMapper.selectByFirstRegion(firstRegion);
+			}
+			
+			if (period != 0){
+				for (int i = 0; i < regions.size(); i++){
+					result.addAll(routeMapper.selectByRegionIdAndPeriod(regions.get(i).getRegionId(), period));
+				}
+			}
+			else{
+				for (int i = 0; i < regions.size(); i++){
+					result.addAll(routeMapper.selectByRegionId(regions.get(i).getRegionId()));
+				}
+			}
+			return result;
+		}
+		else{
+			return null;
+		}
+	}
 
 }

@@ -15,4 +15,12 @@ public interface RouteMapper {
     int updateByPrimaryKey(Route record);
     
     List<Route> selectTop3ByDisplayOrder();
+    
+    List<Integer> selectPeriods();
+    
+    List<Route> selectByPeriod(int period);
+    
+    List<Route> selectByRegionId(String regionId);
+    
+    List<Route> selectByRegionIdAndPeriod(String regionId, int period);
 }

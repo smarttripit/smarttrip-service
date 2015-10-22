@@ -17,7 +17,6 @@ import com.smarttrip.dao.UserMapper;
 import com.smarttrip.domain.User;
 import com.smarttrip.service.IUserService;
 import com.smarttrip.util.MD5Utils;
-import com.smarttrip.util.UUIDUtils;
 
 /**
  * IUserService的实现类. <br/>
