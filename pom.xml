@@ -156,6 +156,11 @@
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 		</dependency>
+		
+		<dependency>
+				<groupId>com.smarttrip</groupId>
+				<artifactId>platform-authcode</artifactId>
+			</dependency>
 	</dependencies>
 
 </project>
