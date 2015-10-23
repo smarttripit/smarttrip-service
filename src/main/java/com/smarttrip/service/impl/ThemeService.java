@@ -91,4 +91,14 @@ public class ThemeService implements IThemeService{
 		return themeMapper.selectAll();
 	}
 	
+	@Override
+	public Theme selectByThemeName(String themeName) {
+		if(themeName == null  ||  themeName.equals("")){
+			logger.error("themeName不能为空");
+			throw new NullPointerException("themeId不能为空");
+		}
+		Theme Theme = themeMapper.selectByPrimaryKey(themeName);
+		return Theme;
+	}
+	
 }

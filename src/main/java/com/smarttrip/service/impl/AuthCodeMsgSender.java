@@ -8,7 +8,6 @@ import java.net.URLEncoder;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.smarttrip.platform.authcode.msgsender.MsgSender;
 
 public class AuthCodeMsgSender implements MsgSender {

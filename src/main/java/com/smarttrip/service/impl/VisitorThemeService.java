@@ -90,4 +90,14 @@ public class VisitorThemeService implements IVisitorThemeService{
 		List<VisitorTheme> visitorTheme = visitorThemeMapper.selectByVisitorId(visitorId);
 		return visitorTheme;
 	}
+	
+	@Override
+	public int deleteByVisitorId(String visitorId) {
+		if(visitorId == null  ||  visitorId.equals("")){
+			logger.error("visitorId不能为空");
+			throw new NullPointerException("visitorId不能为空");
+		}
+		int count = visitorThemeMapper.deleteByPrimaryKey(visitorId);
+		return count;
+	}
 }
