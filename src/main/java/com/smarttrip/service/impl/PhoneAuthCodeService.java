@@ -21,12 +21,19 @@ public class PhoneAuthCodeService implements IPhoneAuthCodeService{
 	
 	@Override
 	public Map<String, String> send(String mobileNo) {
-		AuthCodeSendResult authCodeSendResult = authCodeHandler.send(mobileNo);
 		Map<String, String> rtn = new HashMap<String, String>();
-		rtn.put("result", authCodeSendResult.getResult());
-		rtn.put("sendId", authCodeSendResult.getSendId());
-		rtn.put("tipCode", authCodeSendResult.getTipCode());
-		rtn.put("tipMsg",authCodeSendResult.getTipMsg());
+		try{
+			AuthCodeSendResult authCodeSendResult = authCodeHandler.send(mobileNo);
+			rtn.put("result", authCodeSendResult.getResult());
+			rtn.put("sendId", authCodeSendResult.getSendId());
+			rtn.put("tipCode", authCodeSendResult.getTipCode());
+			rtn.put("tipMsg",authCodeSendResult.getTipMsg());
+		}catch(Exception e){
+			rtn.put("result", "failed");
+			rtn.put("tipCode", "unKnownError");
+			rtn.put("tipMsg","发送短信验证码出现未知错误");
+		}
+		
 		return rtn;
 	}
 
