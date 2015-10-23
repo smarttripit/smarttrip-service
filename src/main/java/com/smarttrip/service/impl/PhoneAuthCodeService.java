@@ -21,8 +21,12 @@ public class PhoneAuthCodeService implements IPhoneAuthCodeService{
 	
 	@Override
 	public Map<String, String> send(String mobileNo) {
-		Map<String, String> rtn = new HashMap<String, String>();
 		AuthCodeSendResult authCodeSendResult = authCodeHandler.send(mobileNo);
+		Map<String, String> rtn = new HashMap<String, String>();
+		rtn.put("result", authCodeSendResult.getResult());
+		rtn.put("sendId", authCodeSendResult.getSendId());
+		rtn.put("tipCode", authCodeSendResult.getTipCode());
+		rtn.put("tipMsg",authCodeSendResult.getTipMsg());
 		return rtn;
 	}
 
@@ -32,7 +36,6 @@ public class PhoneAuthCodeService implements IPhoneAuthCodeService{
 		AuthCodeVerifyResult authCodeVerifyResult = authCodeHandler.verify(mobileNo, userCode);
 		String result = authCodeVerifyResult.getResult();
 		String msg = authCodeVerifyResult.getMsg();
-		
 		Map<String, String> rtn = new HashMap<String, String>();
 		rtn.put("result", result);
 		rtn.put("msg", msg);

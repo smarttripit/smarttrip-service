@@ -22,7 +22,8 @@ public class PhoneAuthCodeServiceTest {
 	@Test
 	public void testSend() {
 		String mobileNo = "13120331797";
-		phoneAuthCodeService.send(mobileNo);
+		Map<String, String> rtn = phoneAuthCodeService.send(mobileNo);
+		assertEquals(rtn.get("result"), "success");
 	}
 	
 	@Test
