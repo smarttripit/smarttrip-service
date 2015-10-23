@@ -1,7 +1,8 @@
 package com.smarttrip.dao;
 
-import com.smarttrip.domain.Comment;
 import java.util.List;
+
+import com.smarttrip.domain.Comment;
 
 public interface CommentMapper {
     int deleteByPrimaryKey(String commentId);
@@ -13,4 +14,6 @@ public interface CommentMapper {
     List<Comment> selectAll();
 
     int updateByPrimaryKey(Comment record);
+    
+    List<Comment> selectByRouteId(String productId);
 }

@@ -41,4 +41,9 @@
     select commentId, type, productId, content, score, commentTime, visitorId
     from comment
   </select>
+  <select id="selectByRouteId" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select commentId, type, productId, content, score, commentTime, visitorId
+    from comment
+    where type="route" and productId=#{productId, jdbcType=CHAR}
+  </select>
 </mapper>
