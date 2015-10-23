@@ -94,9 +94,9 @@
     purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
     detail, feeDescription, bookingNotice, detailRecommendation
     from route
-    where period = #{period, jdbcType=INGETER} 	
+    where period = #{period, jdbcType=INTEGER} 	
   </select>
-  <select id="selectByRegionId" resultMap="BaseResultMap" paramaterType="java.lang.String">
+  <select id="selectByRegionId" resultMap="BaseResultMap" parameterType="java.lang.String">
   	select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
     purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
     detail, feeDescription, bookingNotice, detailRecommendation

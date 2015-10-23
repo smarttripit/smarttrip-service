@@ -1,5 +1,7 @@
 package com.smarttrip.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +66,15 @@ public class ScheduleService implements IScheduleService {
 		}
 		Schedule record = scheduleMapper.selectByPrimaryKey(scheduleId);
 		return record;
+	}
+	
+	@Override
+	public List<Schedule> selectByRouteId(String routeId){
+		if (routeId == null || routeId.equals("")){
+			logger.error("routeId不能为空");
+			throw new NullPointerException("routeId不能为空");
+		}
+		return scheduleMapper.selectByRouteId(routeId);
 	}
 
 }

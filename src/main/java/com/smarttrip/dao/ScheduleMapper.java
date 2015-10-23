@@ -13,4 +13,6 @@ public interface ScheduleMapper {
     List<Schedule> selectAll();
 
     int updateByPrimaryKey(Schedule record);
+    
+    List<Schedule> selectByRouteId(String routeId);
 }

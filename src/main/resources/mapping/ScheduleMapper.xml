@@ -51,4 +51,11 @@
     description
     from schedule
   </select>
+  <select id="selectByRouteId" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select scheduleId, routeId, order, type, name, summary, thumbnail, link, direction, 
+    description
+    from schedule
+    where routeId = #{routeId, jdbcType=CHAR}
+    order by order
+  </select>
 </mapper>
