@@ -18,20 +18,20 @@
     where scheduleId = #{scheduleId,jdbcType=CHAR}
   </delete>
   <insert id="insert" parameterType="com.smarttrip.domain.Schedule" >
-    insert into schedule (scheduleId, routeId, order, 
-      type, name, summary, thumbnail, 
+    insert into schedule (scheduleId, routeId, displayOrder, 
+      scheduleType, name, summary, thumbnail, 
       link, direction, description
       )
-    values (#{scheduleId,jdbcType=CHAR}, #{routeId,jdbcType=CHAR}, #{order,jdbcType=INTEGER}, 
-      #{type,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{thumbnail,jdbcType=CHAR}, 
+    values (#{scheduleId,jdbcType=CHAR}, #{routeId,jdbcType=CHAR}, #{displayOrder,jdbcType=INTEGER}, 
+      #{scheduleType,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{thumbnail,jdbcType=CHAR}, 
       #{link,jdbcType=VARCHAR}, #{direction,jdbcType=CHAR}, #{description,jdbcType=LONGVARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.smarttrip.domain.Schedule" >
     update schedule
     set routeId = #{routeId,jdbcType=CHAR},
-      order = #{order,jdbcType=INTEGER},
-      type = #{type,jdbcType=CHAR},
+      displayOrder = #{displayOrder,jdbcType=INTEGER},
+      scheduleType = #{scheduleType,jdbcType=CHAR},
       name = #{name,jdbcType=VARCHAR},
       summary = #{summary,jdbcType=VARCHAR},
       thumbnail = #{thumbnail,jdbcType=CHAR},
@@ -41,21 +41,21 @@
     where scheduleId = #{scheduleId,jdbcType=CHAR}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select scheduleId, routeId, order, type, name, summary, thumbnail, link, direction, 
+    select scheduleId, routeId, displayOrder, scheduleType, name, summary, thumbnail, link, direction, 
     description
     from schedule
     where scheduleId = #{scheduleId,jdbcType=CHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select scheduleId, routeId, order, type, name, summary, thumbnail, link, direction, 
+    select scheduleId, routeId, displayOrder, scheduleType, name, summary, thumbnail, link, direction, 
     description
     from schedule
   </select>
   <select id="selectByRouteId" resultMap="BaseResultMap" parameterType="java.lang.String">
-  	select scheduleId, routeId, order, type, name, summary, thumbnail, link, direction, 
+  	select scheduleId, routeId, displayOrder, scheduleType, name, summary, thumbnail, link, direction, 
     description
     from schedule
     where routeId = #{routeId, jdbcType=CHAR}
-    order by order
+    order by displayOrder
   </select>
 </mapper>

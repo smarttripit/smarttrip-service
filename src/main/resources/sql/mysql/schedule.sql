@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS `schedule`;
 CREATE TABLE `schedule` (
   `scheduleId` char(32) NOT NULL COMMENT '主键',
   `routeId` char(32) NOT NULL COMMENT '经典线路的ID。关联route表。',
-  `order` int(11) NOT NULL DEFAULT '0' COMMENT '顺序。顺序号小的排在前面。',
-  `type` char(1) NOT NULL COMMENT '类型。1；驾车；2：住宿；3：餐饮；4：景点',
+  `displayOrder` int(11) NOT NULL DEFAULT '0' COMMENT '顺序。顺序号小的排在前面。',
+  `scheduleType` char(1) NOT NULL COMMENT '类型。1；驾车；2：住宿；3：餐饮；4：景点',
   `name` varchar(50) DEFAULT NULL COMMENT '名称。比如：某个景点的名称是xx村。',
   `summary` varchar(50) DEFAULT NULL COMMENT '简介',
   `description` longtext COMMENT '详情',

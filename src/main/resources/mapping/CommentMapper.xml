@@ -3,7 +3,7 @@
 <mapper namespace="com.smarttrip.dao.CommentMapper" >
   <resultMap id="BaseResultMap" type="com.smarttrip.domain.Comment" >
     <id column="commentId" property="commentId" jdbcType="CHAR" />
-    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="productType" property="type" jdbcType="CHAR" />
     <result column="productId" property="productId" jdbcType="CHAR" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="score" property="score" jdbcType="TINYINT" />
@@ -15,16 +15,16 @@
     where commentId = #{commentId,jdbcType=CHAR}
   </delete>
   <insert id="insert" parameterType="com.smarttrip.domain.Comment" >
-    insert into comment (commentId, type, productId, 
+    insert into comment (commentId, productType, productId, 
       content, score, commentTime, 
       visitorId)
-    values (#{commentId,jdbcType=CHAR}, #{type,jdbcType=CHAR}, #{productId,jdbcType=CHAR}, 
+    values (#{commentId,jdbcType=CHAR}, #{productType,jdbcType=CHAR}, #{productId,jdbcType=CHAR}, 
       #{content,jdbcType=VARCHAR}, #{score,jdbcType=TINYINT}, #{commentTime,jdbcType=CHAR}, 
       #{visitorId,jdbcType=CHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.smarttrip.domain.Comment" >
     update comment
-    set type = #{type,jdbcType=CHAR},
+    set productType = #{productType,jdbcType=CHAR},
       productId = #{productId,jdbcType=CHAR},
       content = #{content,jdbcType=VARCHAR},
       score = #{score,jdbcType=TINYINT},
@@ -33,17 +33,17 @@
     where commentId = #{commentId,jdbcType=CHAR}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select commentId, type, productId, content, score, commentTime, visitorId
+    select commentId, productType, productId, content, score, commentTime, visitorId
     from comment
     where commentId = #{commentId,jdbcType=CHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select commentId, type, productId, content, score, commentTime, visitorId
+    select commentId, productType, productId, content, score, commentTime, visitorId
     from comment
   </select>
   <select id="selectByRouteId" resultMap="BaseResultMap" parameterType="java.lang.String">
-  	select commentId, type, productId, content, score, commentTime, visitorId
+  	select commentId, productType, productId, content, score, commentTime, visitorId
     from comment
-    where type="route" and productId=#{productId, jdbcType=CHAR}
+    where productType="route" and productId=#{productId, jdbcType=CHAR}
   </select>
 </mapper>
