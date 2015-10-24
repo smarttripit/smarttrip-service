@@ -27,5 +27,5 @@ public interface RouteMapper {
     
     List<Route> selectByRegionIdAndPeriod(String regionId, int period);
     
-    List<Route> selectByConditions(@Param("regionId")List<String> regionId, @Param("theme")List<String> theme, @Param("period")int[] period, @Param("pageNum")int pageNum, @Param("pageSize")int pageSize, @Param("sortField")String sortField);
+    List<Route> selectByConditions(@Param("regionId")List<String> regionId, @Param("routeId")List<String> routeId, @Param("period")int[] period, @Param("left")int left, @Param("right")int right, @Param("sortField")String sortField);
 }

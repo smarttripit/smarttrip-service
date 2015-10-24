@@ -1,7 +1,10 @@
 package com.smarttrip.dao;
 
-import com.smarttrip.domain.Theme;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.smarttrip.domain.Theme;
 
 public interface ThemeMapper {
     int deleteByPrimaryKey(String themeId);
@@ -14,5 +17,5 @@ public interface ThemeMapper {
 
     int updateByPrimaryKey(Theme record);
     
-    Theme selectByThemeName(String name);
+    List<String> selectByThemeName(@Param("name")List<String> name);
 }

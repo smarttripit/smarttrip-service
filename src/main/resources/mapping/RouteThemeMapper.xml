@@ -39,4 +39,16 @@
   	from routetheme
   	where themeId = #{themeId,jdbcType=CHAR}  
   </select>
+  <select id="selectRouteId" resultType="java.lang.String">
+  	select id, routeId, themeId
+  	from routetheme
+  	<where>
+  		<if test="themeId != null and themeId.size() > 0">
+  			where in 
+  			<foreach item="themeId" index="index" collection="themeId" open="(" separator="," close=")">
+				#{themeId}
+			</foreach>
+  		</if>
+  	</where>
+  </select>
 </mapper>

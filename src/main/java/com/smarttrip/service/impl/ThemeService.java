@@ -92,13 +92,12 @@ public class ThemeService implements IThemeService{
 	}
 	
 	@Override
-	public Theme selectByThemeName(String themeName) {
+	public List<String> selectByThemeName(List<String> themeName) {
 		if(themeName == null  ||  themeName.equals("")){
 			logger.error("themeName不能为空");
 			throw new NullPointerException("themeId不能为空");
 		}
-		Theme Theme = themeMapper.selectByPrimaryKey(themeName);
-		return Theme;
+		return themeMapper.selectByThemeName(themeName);
 	}
 	
 }

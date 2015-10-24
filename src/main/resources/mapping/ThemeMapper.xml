@@ -27,9 +27,16 @@
     select themeId, name
     from theme
   </select>
-  <select id="selectByThemeName" resultMap="BaseResultMap" parameterType="java.lang.String">
+  <select id="selectByThemeName" resultType="java.lang.String">
   	select themeId, name
     from theme
-  	where name = #{name, jdbcType=CHAR}
+    <where>
+    	<if test="name != null and name.size() > 0">
+    		name in
+    		<foreach item="name" index="index" collection="name" open="(" separator="," close=")">
+				#{name, jdbcType=CHAR}
+			</foreach>
+    	</if>
+    </where>
   </select>
 </mapper>

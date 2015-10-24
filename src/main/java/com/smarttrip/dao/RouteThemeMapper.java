@@ -1,7 +1,10 @@
 package com.smarttrip.dao;
 
-import com.smarttrip.domain.RouteTheme;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.smarttrip.domain.RouteTheme;
 
 public interface RouteThemeMapper {
     int deleteByPrimaryKey(String id);
@@ -17,4 +20,6 @@ public interface RouteThemeMapper {
     List<RouteTheme> selectByRouteId(String routeId);
     
     List<RouteTheme> selectByThemeId(String themeId);
+    
+    List<String> selectRouteId(@Param("themeId")List<String> themeId);
 }

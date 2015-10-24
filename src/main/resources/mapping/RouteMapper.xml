@@ -116,25 +116,25 @@
     detail, feeDescription, bookingNotice, detailRecommendation
     from route
 	where status = '1'
-		<if test="regionId != null">
+		<if test="regionId != null and regionId.size() > 0" >
 			AND regionId in
 			<foreach item="regionId" index="index" collection="regionId" open="(" separator="," close=")">
 				#{regionId}
 			</foreach>
 		</if>
-		<if test="theme != null">
+		<if test="routeId != null and routeId.size() > 0">
 			AND theme in
-			<foreach item="theme" index="index" collection="theme" open="(" separator="," close=")">
-				#{theme}
+			<foreach item="routeId" index="index" collection="routeId" open="(" separator="," close=")">
+				#{routeId}
 			</foreach>
 		</if>
-		<if test="period != null">
+		<if test="period != null and period.length > 0">
 			AND period in
 			<foreach item="period" index="index" collection="period" open="(" separator="," close=")">
 				#{period}
 			</foreach>
 		</if>
 	order by #{sortField}	
-  	limit #{pageNum} * #{pageSize}, #{pageNum} * #{pageSize} + #{pageSize}
+  	limit #{left} , #{right}
   </select>
 </mapper>

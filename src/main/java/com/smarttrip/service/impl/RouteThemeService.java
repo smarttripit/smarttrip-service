@@ -91,6 +91,10 @@ public class RouteThemeService implements IRouteThemeService {
 		return record;
 	}
 	
+	@Override
+	public List<String> selectRouteId(List<String> themeId){
+		return routeThemeMapper.selectRouteId(themeId);
+	}
 	
 
 	
