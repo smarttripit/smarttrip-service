@@ -39,6 +39,21 @@
   <select id="selectBySecondRegion" resultMap="BaseResultMap" parameterType="java.lang.String">
   	select regionId, firstRegion, secondRegion
   	from region
-  	where firstRegion = #{secondRegion,jdbcType=VARCHAR}
+  	where secondRegion = #{secondRegion,jdbcType=VARCHAR}
+  </select>
+  <select id="selectRegionId" resultType="java.lang.String"> 
+  	select regionId
+  	from region
+  	<where>
+  		<if test="firstRegion != null">
+  			firstRegion = #{firstRegion, jdbcType=VARCHAR}
+  		</if>
+		<if test="secondRegion != null and secondRegion.size() > 0">
+			AND secondRegion in
+			<foreach item="secondRegion" index="index" collection="secondRegion" open="(" separator="," close=")">
+				#{secondRegion, jdbcType=VARCHAR}
+			</foreach>
+		</if>
+  	</where>
   </select>
 </mapper>

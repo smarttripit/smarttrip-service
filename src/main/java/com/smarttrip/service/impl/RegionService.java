@@ -86,4 +86,11 @@ public class RegionService implements IRegionService {
 		return record;
 	}
 
+	@Override
+	public List<String> selectRegionId(String firstRegion, List<String> secondRegion){
+		if (firstRegion.equals("") || firstRegion== null){
+			throw new NullPointerException("输入城市不能为空");
+		}
+		return regionMapper.selectRegionId(firstRegion, secondRegion);
+	}
 }

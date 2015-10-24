@@ -110,5 +110,31 @@
     from route
     where regionId = #{regionId, jdbcType=CHAR} and #{period, jdbcType=INTEGER}
   </select>
-  
+  <select id="selectByConditions" resultMap="BaseResultMap">
+   	select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
+    purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
+    detail, feeDescription, bookingNotice, detailRecommendation
+    from route
+	where status = '1'
+		<if test="regionId != null">
+			AND regionId in
+			<foreach item="regionId" index="index" collection="regionId" open="(" separator="," close=")">
+				#{regionId}
+			</foreach>
+		</if>
+		<if test="theme != null">
+			AND theme in
+			<foreach item="theme" index="index" collection="theme" open="(" separator="," close=")">
+				#{theme}
+			</foreach>
+		</if>
+		<if test="period != null">
+			AND period in
+			<foreach item="period" index="index" collection="period" open="(" separator="," close=")">
+				#{period}
+			</foreach>
+		</if>
+	order by #{sortField}	
+  	limit #{pageNum} * #{pageSize}, #{pageNum} * #{pageSize} + #{pageSize}
+  </select>
 </mapper>

@@ -176,14 +176,8 @@ public class RouteService implements IRouteService {
 			List<Region> regions = new ArrayList<>();
 			List<Route> result = new ArrayList<>();
 			if (secondRegion != null){
-				Region region = regionMapper.selectBySecondRegion(secondRegion);
-				if (region.getFirstRegion().equals(firstRegion)){
-					regions.add(regionMapper.selectBySecondRegion(secondRegion));
-				}else{
-					logger.error("该区县不在该城市中");
-					throw new NullPointerException("该区县不在该城市中");
-				}
-				regions.add(regionMapper.selectBySecondRegion(secondRegion));
+				Region record = regionMapper.selectBySecondRegion(secondRegion);
+				if (record != null)regions.add(record);
 			}
 			else if (firstRegion != null && secondRegion == null){
 				regions = regionMapper.selectByFirstRegion(firstRegion);
@@ -191,12 +185,14 @@ public class RouteService implements IRouteService {
 			
 			if (period != 0){
 				for (int i = 0; i < regions.size(); i++){
-					result.addAll(routeMapper.selectByRegionIdAndPeriod(regions.get(i).getRegionId(), period));
+					List<Route> record = routeMapper.selectByRegionIdAndPeriod(regions.get(i).getRegionId(), period);
+					if (record != null)result.addAll(record);
 				}
 			}
 			else{
 				for (int i = 0; i < regions.size(); i++){
-					result.addAll(routeMapper.selectByRegionId(regions.get(i).getRegionId()));
+					List<Route> record = routeMapper.selectByRegionId(regions.get(i).getRegionId());
+					if (record != null)result.addAll(record);
 				}
 			}
 			return result;
@@ -204,6 +200,15 @@ public class RouteService implements IRouteService {
 		else{
 			return null;
 		}
+	}
+	
+	@Override
+	public List<Route> selectByConditions(List<String> regionId, List<String> theme, int[] period, int pageNum, int pageSize, String sortField){
+		if (pageNum < 0 || pageSize <= 0){
+			logger.error("页数不合法");
+			throw new NullPointerException("页数不合法");
+		}
+		return routeMapper.selectByConditions(regionId, theme, period, pageNum, pageSize, sortField);
 	}
 
 }

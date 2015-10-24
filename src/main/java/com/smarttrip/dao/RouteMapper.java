@@ -1,7 +1,10 @@
 package com.smarttrip.dao;
 
-import com.smarttrip.domain.Route;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.smarttrip.domain.Route;
 
 public interface RouteMapper {
     int deleteByPrimaryKey(String routeId);
@@ -23,4 +26,6 @@ public interface RouteMapper {
     List<Route> selectByRegionId(String regionId);
     
     List<Route> selectByRegionIdAndPeriod(String regionId, int period);
+    
+    List<Route> selectByConditions(@Param("regionId")List<String> regionId, @Param("theme")List<String> theme, @Param("period")int[] period, @Param("pageNum")int pageNum, @Param("pageSize")int pageSize, @Param("sortField")String sortField);
 }
