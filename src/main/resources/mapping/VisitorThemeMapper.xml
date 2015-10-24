@@ -36,4 +36,8 @@
     from visitortheme
     where visitorId = #{visitorId,jdbcType=CHAR}
   </select>
+  <delete id="deleteByVisitorId" parameterType="java.lang.String" >
+    delete from visitortheme
+    where visitorId = #{visitorId,jdbcType=CHAR}
+  </delete>
 </mapper>

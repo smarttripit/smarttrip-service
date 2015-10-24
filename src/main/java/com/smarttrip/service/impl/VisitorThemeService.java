@@ -97,7 +97,7 @@ public class VisitorThemeService implements IVisitorThemeService{
 			logger.error("visitorId不能为空");
 			throw new NullPointerException("visitorId不能为空");
 		}
-		int count = visitorThemeMapper.deleteByPrimaryKey(visitorId);
+		int count = visitorThemeMapper.deleteByVisitorId(visitorId);
 		return count;
 	}
 }
