@@ -31,14 +31,14 @@
     select regionId, firstRegion, secondRegion
     from region
   </select>
-  <select id="selectByFirstRegion" resultMap="BaseResultMap">
+  <select id="selectByFirstRegion" resultMap="BaseResultMap" parameterType="java.lang.String">
   	select regionId, firstRegion, secondRegion
   	from region
-  	where firstRegion = #{firstRegion,jdbcType=CHAR}
+  	where firstRegion = #{firstRegion,jdbcType=VARCHAR}
   </select>
-  <select id="selectBySecondRegion" resultMap="BaseResultMap">
+  <select id="selectBySecondRegion" resultMap="BaseResultMap" parameterType="java.lang.String">
   	select regionId, firstRegion, secondRegion
   	from region
-  	where firstRegion = #{secondRegion,jdbcType=CHAR}
+  	where firstRegion = #{secondRegion,jdbcType=VARCHAR}
   </select>
 </mapper>

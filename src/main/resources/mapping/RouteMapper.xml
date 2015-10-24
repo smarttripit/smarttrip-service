@@ -85,7 +85,7 @@
     order by displayOrder desc
     limit 3
   </select>
-  <select id="selectPeriods" resultMap="java.lang.Integer">
+  <select id="selectPeriods" resultType="java.lang.Integer">
   	select period
   	from route
   </select>
