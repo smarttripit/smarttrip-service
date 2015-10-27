@@ -137,4 +137,9 @@
 	order by #{sortField}	
   	limit #{left} , #{right}
   </select>
+  <select id="updateStatusByRouteId">
+  	update route
+    set status = #{status, jdbcType=CHAR}
+    where routeId = #{routeId,jdbcType=CHAR}
+  </select>
 </mapper>

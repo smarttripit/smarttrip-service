@@ -213,4 +213,17 @@ public class RouteService implements IRouteService {
 		return routeMapper.selectByConditions(regionId, routeId, period, left, right, sortField);
 	}
 
+	@Override
+	public int updateStatusByRouteId(String routeId, char status){
+		if (routeId == null || routeId.equals("")){
+			logger.error("routeId不能为null");
+			throw new NullPointerException("routeId不能为null");
+		}
+		if (status != '1' && status != '2'){
+			logger.error("status只能为1 或者 2");
+			throw new NullPointerException("status只能为1 或者 2");
+		}
+		return routeMapper.updateStatusByRouteId(routeId, status);	
+	}
+	
 }

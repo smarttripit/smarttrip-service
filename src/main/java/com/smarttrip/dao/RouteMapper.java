@@ -28,4 +28,6 @@ public interface RouteMapper {
     List<Route> selectByRegionIdAndPeriod(String regionId, int period);
     
     List<Route> selectByConditions(@Param("regionId")List<String> regionId, @Param("routeId")List<String> routeId, @Param("period")int[] period, @Param("left")int left, @Param("right")int right, @Param("sortField")String sortField);
+
+    int updateStatusByRouteId(@Param("routeId")String routeId, @Param("status")char status);
 }
