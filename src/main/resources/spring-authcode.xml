@@ -10,16 +10,13 @@
                         http://www.springframework.org/schema/mvc  
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
                         
+    <!-- 手机验证码的配置文件 -->                    
 	<bean id="authCodeHandler" class="com.smarttrip.platform.authcode.handler.AuthCodeHandler">
 		<property name="authCodeRepository" ref="repository" />
 		<property name="msgSender" ref="msgSender" />
 		<property name="codeGenerator" ref="codeGenerator" />
 	</bean>
-	
 	<bean id="repository" class="com.smarttrip.platform.authcode.repository.MapRepository" />
-	
 	<bean id="msgSender" class="com.smarttrip.service.impl.AuthCodeMsgSender" />
-	
 	<bean id="codeGenerator" class="com.smarttrip.platform.authcode.codegenerator.DefaultCodeGenerator" />
-
 </beans>

@@ -12,22 +12,21 @@ import com.smarttrip.platform.authcode.msgsender.MsgSender;
 
 public class AuthCodeMsgSender implements MsgSender {
 	private static Logger logger = LoggerFactory.getLogger(AuthCodeMsgSender.class);
-
-	private static String SIGN = "香油网络";
+	private static String SIGN = "周游趣";
 	
 	@Override
 	public void sendMsg(String mobileNo, String code) {
 		logger.debug("mobileNo:" + mobileNo + ";code:" + code);
 		try{
 			//发送内容
-			String content = "验证码"+code+"，您正在注册香油账号，请尽快验证，请不要向任何人泄露。"; 
+			String content = "验证码" + code + "，工作人员不会索取，请勿泄露。"; 
 			String sign = SIGN;
 			// 创建StringBuffer对象用来操作字符串
 			StringBuffer sb = new StringBuffer("http://web.duanxinwang.cc/asmx/smsservice.aspx?");
 			// 向StringBuffer追加用户名
-			sb.append("name=dxwjasonzhang");
+			sb.append("name=15201123847");
 			// 向StringBuffer追加密码（登陆网页版，在管理中心--基本资料--接口密码，是28位的）
-			sb.append("&pwd=27E59B382F6E619C7D546C0F38E8");
+			sb.append("&pwd=0C8198E3513157AFC2EE2526DBBC");
 			// 向StringBuffer追加手机号码
 			sb.append("&mobile=" + mobileNo);
 			// 向StringBuffer追加消息内容转URL标准码
@@ -48,17 +47,16 @@ public class AuthCodeMsgSender implements MsgSender {
 			// 发送
 			InputStream is =url.openStream();
 			//转换返回值
-			String returnStr = this.convertStreamToString(is);
+			String returnStr = convertStreamToString(is);
 			// 返回结果为‘0，20140009090990,1，提交成功’ 发送成功   具体见说明文档
 			logger.debug("短信发送响应报文：" + returnStr);
 			if(!returnStr.startsWith("0,")){
+				logger.error("验证码发送出错，短息服务商的响应报文为：" + returnStr);
 				throw new RuntimeException("验证码发送出错");
 			}
 		}catch(Exception e){
 			throw new RuntimeException("验证码发送出错");
 		}
-			
-		
 	}
 	
 	/**
@@ -66,7 +64,7 @@ public class AuthCodeMsgSender implements MsgSender {
 	 * @param is
 	 * @return
 	 */
-	public static String convertStreamToString(InputStream is) {    
+	public String convertStreamToString(InputStream is) {    
         StringBuilder sb1 = new StringBuilder();    
         byte[] bytes = new byte[4096];  
         int size = 0;  
