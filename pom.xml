@@ -17,7 +17,13 @@
 			<groupId>com.smarttrip</groupId>
 			<artifactId>smarttrip-api</artifactId>
 		</dependency>
-
+		
+		<!-- mybatis分页插件 -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
@@ -100,11 +106,9 @@
 			<artifactId>javaee-api</artifactId>
 		</dependency>
 
-		<!-- <dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-		</dependency> -->
-		
+		<!-- <dependency> <groupId>javax.servlet</groupId> <artifactId>servlet-api</artifactId> 
+			</dependency> -->
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -156,11 +160,11 @@
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 		</dependency>
-		
+
 		<dependency>
-				<groupId>com.smarttrip</groupId>
-				<artifactId>platform-authcode</artifactId>
-			</dependency>
+			<groupId>com.smarttrip</groupId>
+			<artifactId>platform-authcode</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>

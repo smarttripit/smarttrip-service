@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageHelper;
 import com.smarttrip.dao.UserMapper;
 import com.smarttrip.domain.User;
 import com.smarttrip.service.IUserService;
@@ -119,5 +120,12 @@ public class UserService implements IUserService {
 	public User selectByMobile(String mobile) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<User> selectAll(int pageNum, int pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		List<User> list = userMapper.selectAll();
+		return list;
 	}
 }

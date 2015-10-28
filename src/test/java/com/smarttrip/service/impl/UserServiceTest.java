@@ -40,7 +40,7 @@ import com.smarttrip.util.UUIDUtils;
  * @author songjiesdnu@163.com
  */
 @RunWith(SpringJUnit4ClassRunner.class)		//表示继承了SpringJUnit4ClassRunner类
-@ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
+@ContextConfiguration(locations = {"classpath:spring-mybatis.xml","classpath:spring-authcode.xml"})
 @Transactional
 public class UserServiceTest {
 	private static Logger logger = LoggerFactory.getLogger(UserServiceTest.class);
@@ -70,6 +70,14 @@ public class UserServiceTest {
 		userService.insert(user1);
 	}
 	
+	
+	@Test
+	public void testSelectAll(){
+		int pageNum = 1;
+		int pageSize = 20;
+		List<User> list = userService.selectAll(pageNum, pageSize);
+		assertEquals(list.size(), 20);
+	}
 	
 	@Test(expected = NullPointerException.class)
 	public void testSelectByPrimaryKey_null(){

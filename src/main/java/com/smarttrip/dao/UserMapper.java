@@ -1,5 +1,7 @@
 package com.smarttrip.dao;
 
+import java.util.List;
+
 import com.smarttrip.domain.User;
 
 public interface UserMapper {
@@ -10,4 +12,6 @@ public interface UserMapper {
     User selectByPrimaryKey(String id);
 
     int updateByPrimaryKey(User record);
+    
+    List<User> selectAll();
 }
