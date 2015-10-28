@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.smarttrip.dao.VisitorMapper;
 import com.smarttrip.domain.Visitor;
 import com.smarttrip.service.IVisitorService;
@@ -108,4 +109,17 @@ public class VisitorService implements IVisitorService{
 		Visitor Visitor = visitorMapper.selectByName(name);
 		return Visitor;
 	}
-}
+
+	@Override
+	public int updateStatusByVisitorId(String visitorId, String status) {
+		if(visitorId == null  ||  visitorId.equals("")||status ==null||status.equals("")){
+			logger.error("visitorId或status不能为空");
+			throw new NullPointerException("visitorId或status不能为空");
+		}
+		int count = visitorMapper.updateStatusByVisitorId(visitorId,status);
+		return count;
+		}
+
+	
+	}
+

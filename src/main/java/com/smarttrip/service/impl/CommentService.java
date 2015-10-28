@@ -91,4 +91,15 @@ public class CommentService implements ICommentService{
 		List<Comment> record = commentMapper.selectByRouteId(routeId);
 		return record;
 	}
+	
+	@Override
+	public int deleteCommentByVisitorId(String visitorId, String[] commentIds) {
+		if(visitorId == null  ||  visitorId.equals("")||commentIds ==null||commentIds.equals("")){
+			logger.error("visitorId或commentIds不能为空");
+			throw new NullPointerException("visitorId或commentIds不能为空");
+		}
+		int count = commentMapper.deleteCommentByVisitorId(visitorId,commentIds);
+		return count;
+	}
+		
 }

@@ -46,4 +46,12 @@
     from comment
     where productType="route" and productId=#{productId, jdbcType=CHAR}
   </select>
+  <delete id="deleteCommentByVisitorId">
+  	delete from comment
+  	where visitorId = #{visitorId,jdbcType=CHAR}
+  	, commentId in
+  	 <foreach collection="array" item = "commentId" open="(" separator="," close=")">
+  	 #{commentId,jdbcType=CHAR}  
+    </foreach> 
+  </delete>
 </mapper>

@@ -106,4 +106,9 @@
     from visitor
     where name = #{name,jdbcType=CHAR}
   </select>
+  <update id="updateStatusByVisitorId">
+    update visitor
+    set status = #{status,jdbcType=VARCHAR}
+    where visitorId = #{visitorId,jdbcType=CHAR}
+  </update>
 </mapper>
