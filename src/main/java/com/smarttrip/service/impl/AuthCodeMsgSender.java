@@ -12,7 +12,10 @@ import com.smarttrip.platform.authcode.msgsender.MsgSender;
 
 public class AuthCodeMsgSender implements MsgSender {
 	private static Logger logger = LoggerFactory.getLogger(AuthCodeMsgSender.class);
-	private static String SIGN = "周游趣";
+	private String smsSign;
+	//短信网的账号
+	private String pwd;
+	private String name;
 	
 	@Override
 	public void sendMsg(String mobileNo, String code) {
@@ -20,13 +23,13 @@ public class AuthCodeMsgSender implements MsgSender {
 		try{
 			//发送内容
 			String content = "验证码" + code + "，工作人员不会索取，请勿泄露。"; 
-			String sign = SIGN;
+			String sign = smsSign;
 			// 创建StringBuffer对象用来操作字符串
 			StringBuffer sb = new StringBuffer("http://web.duanxinwang.cc/asmx/smsservice.aspx?");
 			// 向StringBuffer追加用户名
-			sb.append("name=15201123847");
+			sb.append("name=" + name);
 			// 向StringBuffer追加密码（登陆网页版，在管理中心--基本资料--接口密码，是28位的）
-			sb.append("&pwd=0C8198E3513157AFC2EE2526DBBC");
+			sb.append("&pwd=" + pwd);
 			// 向StringBuffer追加手机号码
 			sb.append("&mobile=" + mobileNo);
 			// 向StringBuffer追加消息内容转URL标准码
@@ -85,5 +88,29 @@ public class AuthCodeMsgSender implements MsgSender {
         }    
         return sb1.toString();    
     }
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSmsSign() {
+		return smsSign;
+	}
+
+	public void setSmsSign(String smsSign) {
+		this.smsSign = smsSign;
+	}
 
 }
