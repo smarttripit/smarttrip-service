@@ -1,6 +1,5 @@
 package com.smarttrip.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,14 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageInfo;
 import com.smarttrip.dao.RegionMapper;
 import com.smarttrip.dao.RouteMapper;
 import com.smarttrip.dao.RouteThemeMapper;
 import com.smarttrip.dao.ThemeMapper;
-import com.smarttrip.domain.Region;
 import com.smarttrip.domain.Route;
-import com.smarttrip.domain.RouteTheme;
-import com.smarttrip.domain.Theme;
 import com.smarttrip.service.IRouteService;
 
 /**
@@ -27,7 +24,7 @@ import com.smarttrip.service.IRouteService;
 @Transactional
 public class RouteService implements IRouteService {
 
-	private Logger logger = LoggerFactory.getLogger(UserService.class);
+	private Logger logger = LoggerFactory.getLogger(RouteService.class);
 
 	@Autowired
 	private RouteMapper routeMapper;
@@ -63,6 +60,16 @@ public class RouteService implements IRouteService {
 		return count;
 	}
 
+	@Override
+	public List<Route> selectAll(){
+		return routeMapper.selectAll();
+	}
+	
+	@Override
+	public int selectAllCount(){
+		return routeMapper.selectAllCount();
+	}
+	
 	@Override
 	public int deleteByPrimaryKey(String routeId) {
 		// TODO Auto-generated method stub
@@ -225,5 +232,16 @@ public class RouteService implements IRouteService {
 		}
 		return routeMapper.updateStatusByRouteId(routeId, status);	
 	}
+	
+	@Override
+	public PageInfo<Route> selectByCondition(String status, String name, String[] regionId, String[] routeId, int[] period, int page, int rows){
+		if (name != null || name.equals(""))name = "%" + name + "%";
+		List<Route> list = routeMapper.selectByCondition(status, name, regionId, routeId, period);
+		PageInfo<Route> pageInfo = new PageInfo<>(list);
+		return pageInfo;
+	}
+	
+
+	
 	
 }

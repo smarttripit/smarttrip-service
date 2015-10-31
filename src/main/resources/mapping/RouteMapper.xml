@@ -77,6 +77,10 @@
     detail, feeDescription, bookingNotice, detailRecommendation
     from route
   </select>
+  <select id="selectAllCount" resultMap="int">
+  	select count(*)
+  	from route
+  </select>
   <select id="selectTop3ByDisplayOrder" resultMap="BaseResultMap">
   	select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
     purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
@@ -136,6 +140,38 @@
 		</if>
 	order by #{sortField}	
   	limit #{left} , #{right}
+  </select>
+  <select id="selectByCondition" resultMap="BaseResultMap">
+  	select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
+    purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
+    detail, feeDescription, bookingNotice, detailRecommendation
+    from route
+    <where>
+    	<if test="status != null">
+    		status = #{status, jdbcType=CHAR}
+    	</if>
+    	<if test="name != null">
+    		name like #{name, jdbcType=CHAR}
+    	</if>
+    	<if test="regionId != null and regionId.length > 0" >
+			AND regionId in
+			<foreach item="regionId" index="index" collection="array" open="(" separator="," close=")">
+				#{regionId,jdbcType=CHAR}
+			</foreach>
+		</if>
+		<if test="routeId != null and routeId.length > 0">
+			AND theme in
+			<foreach item="routeId" index="index" collection="array" open="(" separator="," close=")">
+				#{routeId,jdbcType=CHAR}
+			</foreach>
+		</if>
+		<if test="period != null and period.length > 0">
+			AND period in
+			<foreach item="period" index="index" collection="array" open="(" separator="," close=")">
+				#{period}
+			</foreach>
+		</if>
+    </where>
   </select>
   <select id="updateStatusByRouteId">
   	update route

@@ -20,7 +20,7 @@ import com.smarttrip.service.IRouteThemeService;
 @Service("routeThemeService")
 @Transactional
 public class RouteThemeService implements IRouteThemeService {
-	private Logger logger = LoggerFactory.getLogger(UserService.class);
+	private Logger logger = LoggerFactory.getLogger(RouteThemeService.class);
 
 	@Autowired
 	private RouteThemeMapper routeThemeMapper;
@@ -92,7 +92,7 @@ public class RouteThemeService implements IRouteThemeService {
 	}
 	
 	@Override
-	public List<String> selectRouteId(List<String> themeId){
+	public List<String> selectRouteId(String[] themeId){
 		return routeThemeMapper.selectRouteId(themeId);
 	}
 	

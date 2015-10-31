@@ -21,5 +21,5 @@ public interface RouteThemeMapper {
     
     List<RouteTheme> selectByThemeId(String themeId);
     
-    List<String> selectRouteId(@Param("themeId")List<String> themeId);
+    List<String> selectRouteId(@Param("themeId")String[] themeId);
 }

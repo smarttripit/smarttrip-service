@@ -14,6 +14,8 @@ public interface RouteMapper {
     Route selectByPrimaryKey(String routeId);
 
     List<Route> selectAll();
+    
+    int selectAllCount();
 
     int updateByPrimaryKey(Route record);
     
@@ -29,5 +31,7 @@ public interface RouteMapper {
     
     List<Route> selectByConditions(@Param("regionId")List<String> regionId, @Param("routeId")List<String> routeId, @Param("period")int[] period, @Param("left")int left, @Param("right")int right, @Param("sortField")String sortField);
 
+    List<Route> selectByCondition(@Param("status")String status, @Param("name")String name, @Param("regionId")String[] regionId, @Param("routeId")String[] routeId, @Param("period")int[] period);
+    
     int updateStatusByRouteId(@Param("routeId")String routeId, @Param("status")char status);
 }

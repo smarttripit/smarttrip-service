@@ -19,7 +19,7 @@ import com.smarttrip.service.IScheduleService;
 @Service("scheduleService")
 @Transactional
 public class ScheduleService implements IScheduleService {
-	private Logger logger = LoggerFactory.getLogger(UserService.class);
+	private Logger logger = LoggerFactory.getLogger(ScheduleService.class);
 
 	@Autowired
 	private ScheduleMapper scheduleMapper;

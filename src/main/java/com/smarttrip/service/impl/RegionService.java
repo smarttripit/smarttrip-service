@@ -22,7 +22,7 @@ import com.smarttrip.service.IRegionService;
 @Transactional
 public class RegionService implements IRegionService {
 
-	private Logger logger = LoggerFactory.getLogger(UserService.class);
+	private Logger logger = LoggerFactory.getLogger(RegionService.class);
 
 	@Autowired
 	private RegionMapper regionMapper;

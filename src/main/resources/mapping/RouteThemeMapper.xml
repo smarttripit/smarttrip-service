@@ -43,9 +43,9 @@
   	select id, routeId, themeId
   	from routetheme
   	<where>
-  		<if test="themeId != null and themeId.size() > 0">
+  		<if test="themeId != null and themeId.length > 0">
   			where in 
-  			<foreach item="themeId" index="index" collection="themeId" open="(" separator="," close=")">
+  			<foreach item="themeId" index="index" collection="array" open="(" separator="," close=")">
 				#{themeId}
 			</foreach>
   		</if>
