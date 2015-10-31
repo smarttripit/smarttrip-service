@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<portable-config>
+    <config-file path="spring-authcode.xml">
+		<replace xpath="/beans/bean[@id='msgSender']/property[@name='pwd']/@value">0C8198E3513157AFC2EE2526DBBC</replace>
+		<replace xpath="/beans/bean[@id='msgSender']/property[@name='name']/@value">15201123847</replace>
+		<replace xpath="/beans/bean[@id='msgSender']/property[@name='smsSign']/@value">周游趣</replace>
+	</config-file>
+	
+	<config-file path="jdbc.properties">
+ 		<replace key="url">jdbc:mysql://rds984937g864d985x9y.mysql.rds.aliyuncs.com:3306/smarttrip?useUnicode=true&amp;amp;characterEncoding=utf8</replace>
+ 		<replace key="username">smarttrip</replace>
+ 		<replace key="password">111111</replace>
+ 		<replace key="initialSize">0</replace>
+ 		<replace key="maxActive">20</replace>
+ 		<replace key="maxIdle">20</replace>
+ 		<replace key="minIdle">1</replace>  
+ 		<replace key="maxWait">30000</replace>
+	</config-file>	 
+</portable-config>
