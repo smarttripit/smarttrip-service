@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.smarttrip.dao.UserMapper;
 import com.smarttrip.domain.User;
 import com.smarttrip.service.IUserService;
@@ -126,6 +127,9 @@ public class UserService implements IUserService {
 	public List<User> selectAll(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
 		List<User> list = userMapper.selectAll();
+		PageInfo<User> page = new PageInfo<User>(list,9);
+		long total = page.getTotal();
+		logger.debug("total:" + total);
 		return list;
 	}
 }
