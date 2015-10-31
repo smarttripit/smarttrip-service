@@ -17,7 +17,7 @@
 		<property name="codeGenerator" ref="codeGenerator" />
 	</bean>
 	<bean id="repository" class="com.smarttrip.platform.authcode.repository.MapRepository" />
-	<bean id="msgSender" class="com.smarttrip.service.impl.AuthCodeMsgSender">
+	<bean id="msgSender" class="com.smarttrip.service.impl.MockAuthCodeMsgSender">
 		<property name="name" value="15201123847" />
 		<property name="pwd" value="0C8198E3513157AFC2EE2526DBBC" />
 		<property name="smsSign" value="周游趣" />
