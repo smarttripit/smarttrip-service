@@ -77,7 +77,7 @@
     detail, feeDescription, bookingNotice, detailRecommendation
     from route
   </select>
-  <select id="selectAllCount" resultMap="int">
+  <select id="selectAllCount" resultType="java.lang.Integer">
   	select count(*)
   	from route
   </select>
