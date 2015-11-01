@@ -25,4 +25,7 @@ public interface VisitorMapper {
 
 	int updateStatusByVisitorId(@Param("visitorId")String visitorId, @Param("status")String status);
 
+	List<Visitor> selectAllByConditions(@Param("name")String name, @Param("mobileNo")String mobileNo,
+			@Param("email")String email);
+
 }

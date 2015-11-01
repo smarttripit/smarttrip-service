@@ -1,14 +1,19 @@
 package com.smarttrip.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.smarttrip.dao.VisitorMapper;
 import com.smarttrip.domain.Visitor;
 import com.smarttrip.service.IVisitorService;
+
 
 /**
  * IVisitorService的实现类. <br/>
@@ -119,6 +124,18 @@ public class VisitorService implements IVisitorService{
 		int count = visitorMapper.updateStatusByVisitorId(visitorId,status);
 		return count;
 		}
+
+	@Override
+	public  PageInfo<Visitor> selectVisitorByPage(int page, int rows, String name,
+			String mobileNo, String email) {
+		if (!(name == null || name.equals(""))){
+			name = "%"+name+"%";
+		}
+		PageHelper.startPage(page, rows);
+		List<Visitor> list = visitorMapper.selectAllByConditions(name,mobileNo,email);
+		PageInfo<Visitor> pageInfo = new PageInfo<Visitor>(list); 
+		return pageInfo;
+	}
 
 	
 	}

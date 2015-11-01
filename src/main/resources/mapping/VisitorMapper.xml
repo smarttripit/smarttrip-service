@@ -111,4 +111,21 @@
     set status = #{status,jdbcType=VARCHAR}
     where visitorId = #{visitorId,jdbcType=CHAR}
   </update>
+  <select id="selectAllByConditions" resultMap="BaseResultMap"  >
+    select visitorId, name, password, salt, realName, realNameSecret, nickName, email, 
+    emailActivated, mobileNo, registerTime, status, headerLarge, headerSmall, birthday, 
+    birthdaySecret, gender, profession, education, introduction, website, city
+    from visitor
+    <where>
+    	<if test="name!=null  and name!=''">
+    		name like #{name,jdbcType=CHAR}
+    	</if>
+    	<if test="mobileNo!=null and mobileNo!=''">
+    		AND mobileNo = #{mobileNo,jdbcType=CHAR}
+    	</if>
+    	<if test="email!=null and email!=''">
+    		AND email = #{email,jdbcType=CHAR}
+    	</if>
+    </where>
+  </select>
 </mapper>
