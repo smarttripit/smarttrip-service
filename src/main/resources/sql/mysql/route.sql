@@ -41,6 +41,7 @@ CREATE TABLE `route` (
   `createTime` char(19) NOT NULL COMMENT '线路的创建时间（格式:yyyy:mm:dd HH:mm:ss）',
   `modifyTime` char(19) DEFAULT NULL COMMENT '线路修改时间（格式:yyyy:mm:dd HH:mm:ss）',
   `status` char(1) NOT NULL DEFAULT '1' COMMENT '线路状态。1:正常；2:停用',
+  `bottomPrice` char(6) DEFAULT NULL,
   PRIMARY KEY (`routeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='经典线路表';
 
