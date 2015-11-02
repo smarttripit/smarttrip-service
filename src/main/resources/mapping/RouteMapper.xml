@@ -21,6 +21,7 @@
     <result column="feeDescription" property="feeDescription" jdbcType="LONGVARCHAR" />
     <result column="bookingNotice" property="bookingNotice" jdbcType="LONGVARCHAR" />
     <result column="detailRecommendation" property="detailRecommendation" jdbcType="LONGVARCHAR" />
+    <result column="bottomPrice" property="bottomPrice" jdbcType="CHAR" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from route
@@ -33,14 +34,14 @@
       regionId, displayOrder, backgroundImg, 
       createTime, modifyTime, status, 
       detail, feeDescription, bookingNotice, 
-      detailRecommendation)
+      detailRecommendation, bottomPrice)
     values (#{routeId,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{feature,jdbcType=VARCHAR}, 
       #{period,jdbcType=SMALLINT}, #{map,jdbcType=CHAR}, #{briefRecommendation,jdbcType=VARCHAR}, 
       #{commentCount,jdbcType=INTEGER}, #{commetRatio,jdbcType=REAL}, #{purchaseCount,jdbcType=INTEGER}, 
       #{regionId,jdbcType=CHAR}, #{displayOrder,jdbcType=INTEGER}, #{backgroundImg,jdbcType=CHAR}, 
       #{createTime,jdbcType=CHAR}, #{modifyTime,jdbcType=CHAR}, #{status,jdbcType=CHAR}, 
       #{detail,jdbcType=LONGVARCHAR}, #{feeDescription,jdbcType=LONGVARCHAR}, #{bookingNotice,jdbcType=LONGVARCHAR}, 
-      #{detailRecommendation,jdbcType=LONGVARCHAR})
+      #{detailRecommendation,jdbcType=LONGVARCHAR}, #{bottomPrice, jdbcType=CHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.smarttrip.domain.Route" >
     update route
@@ -61,20 +62,21 @@
       detail = #{detail,jdbcType=LONGVARCHAR},
       feeDescription = #{feeDescription,jdbcType=LONGVARCHAR},
       bookingNotice = #{bookingNotice,jdbcType=LONGVARCHAR},
-      detailRecommendation = #{detailRecommendation,jdbcType=LONGVARCHAR}
+      detailRecommendation = #{detailRecommendation,jdbcType=LONGVARCHAR},
+      bottomPrice = #{bottomPrice, jdbcType=CHAR}
     where routeId = #{routeId,jdbcType=CHAR}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
     purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
-    detail, feeDescription, bookingNotice, detailRecommendation
+    detail, feeDescription, bookingNotice, detailRecommendation, bottomPrice
     from route
     where routeId = #{routeId,jdbcType=CHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
     purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
-    detail, feeDescription, bookingNotice, detailRecommendation
+    detail, feeDescription, bookingNotice, detailRecommendation, bottomPrice
     from route
   </select>
   <select id="selectAllCount" resultType="java.lang.Integer">
@@ -84,7 +86,7 @@
   <select id="selectTop3ByDisplayOrder" resultMap="BaseResultMap">
   	select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
     purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
-    detail, feeDescription, bookingNotice, detailRecommendation
+    detail, feeDescription, bookingNotice, detailRecommendation, bottomPrice
     from route 
     order by displayOrder desc
     limit 3
@@ -96,28 +98,28 @@
   <select id="selectByPeriod" resultMap="BaseResultMap" parameterType="int">
 	select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
     purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
-    detail, feeDescription, bookingNotice, detailRecommendation
+    detail, feeDescription, bookingNotice, detailRecommendation, bottomPrice
     from route
     where period = #{period, jdbcType=INTEGER} 	
   </select>
   <select id="selectByRegionId" resultMap="BaseResultMap" parameterType="java.lang.String">
   	select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
     purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
-    detail, feeDescription, bookingNotice, detailRecommendation
+    detail, feeDescription, bookingNotice, detailRecommendation, bottomPrice
     from route
     where regionId = #{regionId, jdbcType=CHAR}
   </select>
   <select id="selectByRegionIdAndPeriod" resultMap="BaseResultMap">
   	select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
     purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
-    detail, feeDescription, bookingNotice, detailRecommendation
+    detail, feeDescription, bookingNotice, detailRecommendation, bottomPrice
     from route
     where regionId = #{regionId, jdbcType=CHAR} and #{period, jdbcType=INTEGER}
   </select>
   <select id="selectByConditions" resultMap="BaseResultMap">
    	select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
     purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
-    detail, feeDescription, bookingNotice, detailRecommendation
+    detail, feeDescription, bookingNotice, detailRecommendation, bottomPrice
     from route
 	where status = '1'
 		<if test="regionId != null and regionId.size() > 0" >
@@ -144,7 +146,7 @@
   <select id="selectByCondition" resultMap="BaseResultMap">
   	select routeId, name, feature, period, map, briefRecommendation, commentCount, commetRatio, 
     purchaseCount, regionId, displayOrder, backgroundImg, createTime, modifyTime, status, 
-    detail, feeDescription, bookingNotice, detailRecommendation
+    detail, feeDescription, bookingNotice, detailRecommendation, bottomPrice
     from route
     <where>
     	<if test="status != null">
