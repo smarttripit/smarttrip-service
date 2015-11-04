@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.smarttrip.dao.CommentMapper;
 import com.smarttrip.domain.Comment;
 import com.smarttrip.service.ICommentService;
@@ -100,6 +102,20 @@ public class CommentService implements ICommentService{
 		}
 		int count = commentMapper.deleteCommentByVisitorId(visitorId,commentIds);
 		return count;
+	}
+
+	@Override
+	public PageInfo<Comment> selectCommentByPage(int page, int rows,
+			String visitorId, String content, String productType,
+			String commentBeginTime, String commentEndTime) {
+		if (!(content == null || content.equals(""))){
+			content = "%"+content+"%";
+		}
+		PageHelper.startPage(page, rows);
+		List<Comment> list = commentMapper.selectAllByConditions(visitorId,content,productType,commentBeginTime,commentEndTime);
+		PageInfo<Comment> pageInfo = new PageInfo<Comment>(list); 
+		return pageInfo;
+		
 	}
 		
 }

@@ -20,4 +20,7 @@ public interface CommentMapper {
     List<Comment> selectByRouteId(String productId);
     
     int deleteCommentByVisitorId(@Param("visitorId")String visitorId, @Param("commentIds")String[] commentIds);
+
+	List<Comment> selectAllByConditions(@Param("visitorId")String visitorId, @Param("content")String content,
+			@Param("productType")String productType, @Param("commentBeginTime")String commentBeginTime, @Param("commentEndTime")String commentEndTime);
 }

@@ -54,4 +54,23 @@
   	 #{commentId,jdbcType=CHAR}  
     </foreach> 
   </delete>
+  <select id="selectAllByConditions" resultMap="BaseResultMap" >
+    select commentId, productType, productId, content, score, commentTime, visitorId
+    from comment
+    <where>
+    	<if test="visitorId!=null  and visitorId!=''">
+    		visitorId = #{visitorId,jdbcType=CHAR}
+    	</if>
+    	<if test="content!=null and content!=''">
+    		AND content like #{content,jdbcType=CHAR}
+    	</if>
+    	<if test="productType!=null and productType!=''">
+    		AND productType = #{productType,jdbcType=CHAR}
+    	</if>
+    	<if test="commentBeginTime!=null and commentBeginTime!='' and commentEndTime!=null and commentEndTime!=''">
+    		AND commentTime &gt;= #{commentBeginTime,jdbcType=CHAR}
+    		AND commentTime &lt;= #{commentEndTime,jdbcType=CHAR}   		
+    	</if>
+    </where>
+  </select>
 </mapper>
